@@ -1,44 +1,46 @@
 .. _calm_iaas_linux:
 
 ---------------------------------
-Calm: Infrastructure as a Service
+Calm: LinuxによるInfrastructure as a Service構築
 ---------------------------------
 
-*The estimated time to complete this lab is 20 minutes.*
+*この演習の所要時間は20分です。*
 
-Overview
+はじめに
 ++++++++
 
-Nutanix Calm allows you to seamlessly select, provision, and manage your business applications across your infrastructure for both the private and public clouds. Nutanix Calm provides App lifecycle, monitoring and remediation to manage your heterogeneous infrastructure, for example, VMs or bare-metal servers. Nutanix Calm supports multiple platforms so that you can use a single self-service and automation interface to manage all your infrastructure.
+Nutanix Calmを使用すると、プライベートクラウドとパブリッククラウドの両方のインフラストラクチャにわたって、ビジネスアプリケーションをシームレスに選択、プロビジョニング、管理することができます。Nutanix Calmは、アプリのライフサイクル、モニタリング、および運用をVMやベアメタルサーバーなどの異なるインフラストラクチャにおいて提供します。Nutanix Calmは複数のプラットフォームをサポートしているため、単一のセルフサービスおよび自動化インターフェースを使用してすべてのインフラストラクチャを管理することができます。
 
-Infrastructure-as-a-Service (IaaS) is defined as the ability to quickly provide compute resources, on-demand through a self service portal.  While many customers utilize Nutanix Calm to orchestrate complex, multi-tiered applications, a significant portion of customers also utilize Calm to provide basic IaaS for their end users.
+Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介してオンデマンドでリソースを迅速に提供する機能として定義されています。 現在、Nutanix Calmのユーザの大部分は、エンドユーザーに基本的なIaaS機能を提供するためにCalmを利用しています。一方、複雑で多階層のアプリケーションをオーケストレーションするためにNutanix Calmを利用するユーザもいます。
 
-**In this lab you'll create a "Single VM Blueprint" based on Linux, launch the blueprint, and manage the resulting application.**
+**このラボでは、Linuxベースの"Single VM Blueprint"を作成し、ブループリントを起動し、結果として得られた仮想マシンおよびアプリケーションを管理します。**
 
-Creating a Single VM Blueprint
+単一の仮想マシンのブループリントの作成
 ++++++++++++++++++++++++++++++
 
-A blueprint is the framework for every application or piece of infrastructure that you model by using Nutanix Calm.  While complex, multi-tiered applications utilize the "Multi VM/Pod Blueprint", the streamlined interface of the "Single VM Blueprint" is conducive for IaaS use cases.  You can model each type of infrastructure your company utilizes (for instance Windows, CentOS, and/or Ubuntu) in a Single VM blueprint, and end users can repeatedly launch the blueprint to create infrastructure on demand.  The resulting infrastructure (which is still referred to as an "application"), can then be managed throughout its entire lifecycle within Calm, including managing Nutanix Guest Tools (NGT), modifying resources, snapshotting, and cloning.
+ブループリントとは、Nutanix Calmを使用してモデル化するすべてのアプリケーションまたはインフラストラクチャのフレームワークです。 複雑で多階層のアプリケーションは「マルチ仮想マシン/ポッド ブループリント」を利用しますが、「単一の仮想マシンのブループリント」のインターフェースはIaaSのユースケースにおいて利用可能です。 あなたの会社が利用しているインフラストラクチャの各タイプ（例えばWindows、CentOS、Ubuntuなど）を単一の仮想マシンのブループリントでモデル化することができ、エンドユーザーは必要に応じて繰り返しブループリントを起動してインフラストラクチャを作成することができます。結果として得られたインフラストラクチャ（「アプリケーション」と呼ばれています）は、Nutanix Guest Tools (NGT)の管理、リソースの変更、スナップショット、およびクローン作成を含めて、Calm内でライフサイクル全体を通して管理することができます。
 
-In this lab, you will be creating a **CentOS 7** Linux server.
+このラボでは、**CentOS 7** のLinuxサーバを作成します。
 
-#. In **Prism Central**, select :fa:`bars` **> Services > Calm**.
+**ここで１回UIを英語にする旨記載**
+
+#. **Prism Central** で、 :fa:`bars` **> Services > Calm** を選択します。
 
    .. figure:: images/1_access_calm.png
 
-#. Select |blueprints| **Blueprints** in the left hand toolbar to view and manage Calm blueprints.
+#. 左側のツールバーの ｜blueprints| **Blueprints** を選択して、Calmのブループリントを表示および管理します。
 
    .. note::
 
-     Mousing over an icon will display its title.
+     アイコンにマウスを当てるとメニューがテキストで表示されます。
 
-#. Click **+ Create Blueprint > Single VM Blueprint**.
+#. **+ Create Blueprint > Single VM Blueprint** を選択します。
 
-#. Fill out the following fields:
+#. 以下の項目を記入します。
 
-   - **Name** - *Initials*-CentOS-IaaS
-   - **Description** - Something descriptive of your choice
-   - **Project** - *Initials*-Project
+   - **Name** - *あなたのイニシャル*-CentOS-IaaS
+   - **Description** - ブループリントの説明を書きます。
+   - **Project** - *あなたのイニシャル*-Project
 
    .. figure:: images/2_centos_1.png
        :align: center
@@ -46,7 +48,7 @@ In this lab, you will be creating a **CentOS 7** Linux server.
 
        CentOS 7 Blueprint Settings
 
-#. Click **VM Details** to proceed to the next step.
+#. **VM Details** をクリックし、次のステップに進みます。
 
 #. Note the following fields on the **VM Details** page:
 
@@ -189,6 +191,7 @@ Variables can be used in scripts executed against objects using the **@@{variabl
 
        Blueprint Save - Warning
 
+**ここで日本語UIに戻す旨記載**
 
 Launching the Blueprint
 +++++++++++++++++++++++
