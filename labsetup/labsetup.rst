@@ -1,39 +1,36 @@
 .. _labsetup:
 
 ----------------------
-Calm Lab Setup
+Calm ラボの準備
 ----------------------
 
-
-
-
-Configuring a Project
+Projectを作成する
 +++++++++++++++++++++
 
-In this lab you will leverage multiple pre-built Calm Blueprints to provision your applications...
+このラボでは、事前に構築された複数のCalmブループリントを活用して、アプリケーションのプロビジョニングを行います。
 
-#. In **Prism Central**, select :fa:`bars` **> Services > Calm**.\
+#. **Prism Central** で :fa:`bars` **> Services > Calm** を選択します。
 
-#. Select **Projects** from the lefthand menu and click **+ Create Project**.
+#. 左側のメニューから **Project** を選択し、 **+Create Project** をクリックします。
 
    .. figure:: images/2.png
 
-#. Fill out the following fields:
+#. 以下のフィールドに入力します。
 
-   - **Project Name** - *Initials*\ -Project
-   - Under **Users, Groups, and Roles**, select **+ User**
+   - **Project Name** - **あなたのイニシャル** -Project
+   - **Users, Groups, and Roles** の配下で **+ User** を選択します。
       - **Name** - Administrators
       - **Role** - Project Admin
       - **Action** - Save
-   - Under **Infrastructure**, select **Select Provider > Nutanix**
-   - Click **Select Clusters & Subnets**
-   - Select *Your Assigned Cluster*
-   - Under **Subnets**, select **Primary**, **Secondary**, and click **Confirm**
-   - Mark **Primary** as the default network by clicking the :fa:`star`
+   - **Infrastructure** の配下で **Select Provider > Nutanix** を選択します。
+   - **Select Clusters & Subnets** をクリックします。
+   - **あなたに割り当てられたクラスタ** を選択します。
+   - **Subnets** にて **Primary** と **Secondary** を選択し、 **Confirm** をクリックします。
+   - :fa:`star` をクリックし、 **Primary** をデフォルトのネットワークに設定します。 
 
    .. figure:: images/3.png
 
-#. Click **Save & Configure Environment**.
+#. **Save & Configure Environment** をクリックします。
 
 Deploying a Windows Tools VM
 ++++++++++++++++++++++++++++
