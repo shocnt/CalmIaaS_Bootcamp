@@ -2,7 +2,7 @@
 
 .. toctree::
   :maxdepth: 2
-  :caption: Calm
+  :caption: Calm演習準備
   :name: _calm
   :hidden:
 
@@ -11,7 +11,7 @@
 
 .. toctree::
   :maxdepth: 2
-  :caption: Calm with Linux Track
+  :caption: LinuxによるIaaSサービス
   :name: _calm_linux_track
   :hidden:
 
@@ -19,7 +19,7 @@
 
 .. toctree::
   :maxdepth: 2
-  :caption: Calm with Windows Track
+  :caption: WindowsによるIaaSサービス
   :name: _calm_windows_track
   :hidden:
 
@@ -27,7 +27,7 @@
 
 .. toctree::
   :maxdepth: 2
-  :caption: Additional Calm Labs
+  :caption: 追加の演習
   :name: _additional_calm_labs
   :hidden:
 
@@ -36,7 +36,7 @@
 
 .. toctree::
   :maxdepth: 2
-  :caption: Optional Labs
+  :caption: 任意の演習
   :name: _optional_labs
   :hidden:
 
