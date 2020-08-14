@@ -1,159 +1,149 @@
 .. _calm_dsl:
 
 --------------------
-Calm: Quickstart DSL
+Calm: DSLのクイックスタート
 --------------------
 
-Overview
+はじめに
 ++++++++
 
-To start the DSL lab we have provided a [DevWorkStation.json](https://raw.githubusercontent.com/bmp-ntnx/QuickStartCalmDSL/master/DevWorkstation.json) blueprint to quickly get you started. The included DevWorkstation.json builds a CentOS VM with all the necessary tools.  This blueprint can be launched directly from Calm, but we recommend publishing it to the Calm Marketpkace for Self Service.  Also, included is [software-developer.png](https://github.com/bmp-ntnx/QuickStartCalmDSL/blob/master/software-developer.png) which can be used as an icon
+DSLの演習をすぐに始められるように [DevWorkStation.json](https://raw.githubusercontent.com/bmp-ntnx/QuickStartCalmDSL/master/DevWorkstation.json) のブループリントを用意しました。同梱されているDevWorkstation.jsonは、必要なツールをすべて含んだ CentOS VMを構築します。この設計図はCalmから直接起動することができますが、セルフサービス用のCalm Marketplaceに公開することをお勧めします。 また、アイコンとして使用できる[software-developer.png](https://github.com/bmp-ntnx/QuickStartCalmDSL/blob/master/software-developer.png)も付属しています。
 
-## Launch DevWorkstation from Calm Marketplace
+## CalmのマーケットプレイスからDevWorkstationを起動
 
 ![Alt text](images/MPDevWorkstation.png)
 
--   **Important: Select the Credentials tab and enter desired User/Pass**
+-   **重要: 認証情報タブを選択し、希望するユーザー/パスを入力します。**
 
 ![Alt text](images/Creds.png)
 
--   Enter the name of Application "DevWorkstation-\<INITIALS\> and fill out the form with the requested information
+-   アプリケーション名 "DevWorkstation-あなたのイニシャル" を入力し、必要事項を記入してください。
 
 ![Alt text](images/DevLaunch.png)
 
--   Press Create
+-   **作成** をクリックします。
 
--   While waiting review the audit log to see packages being deployed.  The blueprint automatically installs several utilities along with Calm DSL
+-   待機中に **監査** メニュー内のログを確認して、パッケージがデプロイされているのを確認してください。ブループリントは、Calm DSLと一緒にいくつかのユーティリティを自動的にインストールします。
 
-## Once the application is "running" SSH to the DevWorkstation
+## アプリケーションが **実行中** になったら、DevWorkstationにSSHでアクセスします。
 
--   The IP address of the DevWorkstation is listed under the application overview.  The SSH user/pass is what was set under the credentials tab
-
+-   DevWorkstationのIPアドレスは、アプリケーションの概要の下に記載されています。 SSHユーザー/パスは、認証情報タブで設定したものです。
 
 ![Alt text](images/IPaddress.png)
 
-## Start the virtual environment and connect to Prism Central
+## 仮想環境を起動し、Prism Centralに接続します。
 
--   cd to the "calm-dsl" directory from home
+-   ユーザのホームディレクトリから ```cd calm-dsl``` を実行し、ディレクトリに移動します。
 
--   Run ```source venv/bin/activate``` to switch to the virtual environment. This will enable the virtual environment for Calm DSL
+-   ```source venv/bin/activate``` のコマンドを実行して仮想環境に切り替えます。これでCalm DSLの仮想環境が有効になります。
 
--   **Optional:** This has already been done through the blueprint launch. Once you SSH into the DevWorkstation we can setup the connection to Prism Central by running ```calm init dsl```
+-   **オプション:** これはブループリントの起動で既に行われています。一度DevWorkstationにSSHしたら、 ```calm init dsl``` を実行してPrism Centralへの接続を設定します。
 
--   Verify the current config settings by running ```calm show config```
+-   現在の設定を確認するには ```calm show config``` を実行してください。
 
 
 ![Alt text](images/Config.png)
 
-## List the current blueprints in Calm
+## Calmのブループリントを一覧で表示する
 
--   Run ```calm get bps``` and we see all the blueprints in Calm with their UUID, description, application count, project, and state
-
+-   ```calm get bps``` を実行すると、Calm内のすべてのブループリントとUUID、説明、アプリケーション数、プロジェクト、状態が表示されます。
 
 ![Alt text](images/getbps.png)
 
--   Run ```calm get bps -q``` to display quiet output with only the BP names
-
+-   ```calm get bps -q``` を実行すると、BP名のみを含む出力を表示することができます。
 
 ![Alt text](images/calmgetbpsq.png)
 
-## Review python based blueprint and make a modification
+## Pythonベースのブループリントを見直して修正を加える
 
--   Change to the "HelloBlueprint" directory and run ```ls```
+-   ```cd HelloBlueprint``` を実行し、ディレクトリに移動して、 ``ls``` を実行してください。
 
-    -   This directory and it's contents were automatically created during the blueprint launch.  As part of the DevWorkstation blueprint launch we ran ```calm init bp``` which creates a sample blueprint configured to the connected Calm instance
+    -   このディレクトリとその内容はブループリントの起動時に自動的に作成されます。DevWorkstationのブループリント起動の一部として、接続されたCalmインスタンスに設定されたサンプルのブループリントを作成するために ```calm init bp``` を実行しました。
 
--   There is a file called "blueprint.py" which is a python version of a blueprint
+-   "blueprint.py"というファイルがありますが、これはpythonによって書かれたブループリントです。
 
--   There is a "scripts" directory. This is where the bash/powershell/python scripts are stored that are referenced within the blueprint
-
+-   "scripts"ディレクトリがあります。ここにはbash/powershell/pythonスクリプトが保存されていて、ブループリントの中で使用されます。
 
 ![Alt text](images/hellols.png)
 
--   Run ```vi blueprint.py```
+-   ```vi blueprint.py``` を実行します。
 
--   Review the blueprint for familiar constructs.  To skip directly to a line enter ```:<linenumber>```
+-   ブループリントを見てみましょう。行に直接スキップするには ```:<行数>``` と入力してください。
 
-    -   Credentials (line 54-60)
+    -   認証情報 (行 54-60)
 
-    -   OS Image (line 62-66)
+    -   OSイメージ (行 62-66)
 
-    -   Under class HelloPackage(Package) you will see references to the pkg\_install\_task.sh script in the scripts directory (line 139)
+    -   class HelloPackage(Package)の下には、scriptsディレクトリのpkg\_install\_task.shスクリプトへの参照があります。 (行 139)
 
-    -   Basic VM spec information (vCPU/memory/disks/nics) (line 153-159)
+    -   VMの基本スペック情報（vCPU/メモリ/ディスク/NIC) (行 153-159)
 
-    -   Guest Customization contains cloud-init (line 161-171)
+    -   cloud-initによるゲストのカスタマイズ (教 161-171)
 
--   In the blueprint.py modify the number of vCPU
+-   blueprint.pyでは、vCPUの数を変更します。
 
-    -   Change the vCPU from 2 to 4 (line 154)
-
+    -   vCPUを2から4に増やします。 (行 154)
 
 ![Alt text](images/vcpu.png)
 
--   Add a unique VM name using a macro (line 185)
+-   マクロを使用して一意のVM名を追加する (行 185)
 
-    -   ```provider_spec.name = "<Initials>-@@{calm_unique}@@"```
-
+    -   ```provider_spec.name = "<あなたのイニシャル>-@@{calm_unique}@@"```
 
 ![Alt text](images/vmname.png)
 
--   Write/quit ```:wq``` the .py blueprint file to save and close
+-   Pythonによるブループリントファイルを保存して閉じるために、```:wq`````を書き込んで終了します。
 
-## Modify pkg\_install\_task.sh
+## pkg\_install\_task.shの修正
 
--   Change to the scripts directory and run ```ls```. We will see 2 scripts that are being referenced inside blueprint.py
+-   scriptsディレクトリに移動して、 ```ls``` を実行してください。blueprint.pyの中で参照されている2つのスクリプトが表示されます。
 
--   Run ```cat pkg_install_task.sh``` to view the current contents of the install script.  What does the script do?
-
+-   現在のインストールスクリプトの内容を見るには、 ```cat pkg_install_task.sh``` を実行してください。このスクリプトは何をしているのでしょうか？
 
 ![Alt text](images/more1.png)
 
--   Run ```curl -Sks https://raw.githubusercontent.com/bmp-ntnx/prep/master/nginx > pkg_install_task.sh``` to replace the existing install script
+-   既存のインストールスクリプトを置き換えるために、 ```curl -Sks https://raw.githubusercontent.com/bmp-ntnx/prep/master/nginx > pkg_install_task.sh``` を実行してください。
 
--   Run ```cat pkg_install_task.sh``` to view the changed script.  What does the script do now?
-
+-   変更されたスクリプトを見るには、 ```cat pkg_install_task.sh``` を実行してください。今度はスクリプトは何をするようになったのでしょうか？
 
 ![Alt text](images/more2.png)
 
-## Push the modified blueprint.py to Calm
+## 変更したblueprint.pyをCalmに送信
 
--   Return to the "HelloBlueprint" directory
+-   HelloBlueprintディレクトリに戻ります
 
--   Run ```calm create bp --file blueprint.py --name FromDSL-<Initials>```
+-   ```calm create bp --file blueprint.py --name FromDSL-<Initials>``` を実行します。
 
-    -   This converts the .py file to json and pushes it to Calm
-
+    -   これは.pyファイルをjsonに変換してCalmにプッシュします。
 
 ![Alt text](images/syncbp.png)
 
--   **Optional:** Run ```calm compile bp -f blueprint.py``` to view the python blueprint in json format from DSL
+-   **任意** ```calm compile bp -f blueprint.py``` を実行すると、DSLからjson形式のPythonブループリントが表示されます。
 
--   Verify your new blueprint by running ```calm get bps -q | grep FromDSL-<Initials>```
-
+-   新しいブループリントを確認するには、 ```calm get bps -q | grep FromDSL-<あなたのイニシャル>``` を実行してください。
 
 ![Alt text](images/verifygrep.png)
 
-## Launch the blueprint into an application
+## ブループリントを起動
 
--   Run ```calm get apps``` to verify all the current applications before launching your new app
+-   新しいアプリを起動する前に ```calm get apps``` を実行して、現在のアプリをすべて確認してください。
 
-    -   We can also run ```calm get apps -q``` to quiet the details like we did with blueprints earlier
+    -   また、 ```calm get apps -q``` を実行することで、先ほどのブループリントで行ったようにアプリケーション名のみをリストすることができます。
 
--   Launch your newly uploaded blueprint into an application
+-   新しくアップロードしたブループリントをアプリケーションに起動する
 
--   Run ```calm launch bp FromDSL-<Initials> --app_name AppFromDSL-<Initials> -i```
-
+-   ```calm launch bp FromDSL-<Initials> --app_name AppFromDSL-<Initials> -i``` を実行します。
 
 ![Alt text](images/launchbp.png)
 
--   Run ```calm describe app AppFromDSL-<Initials>``` to see the application summary
+-   ```calm describe app AppFromDSL-<Initials>``` を実行し、アプリケーションの詳細を確認します。
 
--   Once the app status changes to "running" we will have a nginx server deployed from Calm DSL!
-
+-   アプリのステータスが **実行中** になったら、Calm DSLからnginxサーバーをデプロイします。
 
 ![Alt text](images/describe.png)
-<!--- -   Run ```calm describe app AppFromDSL-<Initials> --out json | grep -F '[{\"ip\":\"'``` to search the json output for the VM IP --->
+
+
+<!--- -   ```calm describe app AppFromDSL-<Initials> --out json | grep -F '[{\"ip\":\"'``` を実行し、仮想マシンのIP --->
 
 -   Now we need to get the VM/Application IP address.  To get this we will pull the "address" from the application json output using jq by running the following:
 
