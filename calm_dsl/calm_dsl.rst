@@ -142,96 +142,83 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
 ![Alt text](images/describe.png)
 
+-   ここでVM/アプリケーションのIPアドレスを取得する必要があります。 これを取得するために、 ```calm describe app AppFromDSL-<Initials> --out json | jq '.status.resources.deployment_list[].substrate_configuration.element_list[].address'``` を実行して、jqを使ってアプリケーションのjson出力から "IPアドレス"を取得します。
 
-<!--- -   ```calm describe app AppFromDSL-<Initials> --out json | grep -F '[{\"ip\":\"'``` を実行し、仮想マシンのIP --->
-
--   Now we need to get the VM/Application IP address.  To get this we will pull the "address" from the application json output using jq by running the following:
-
--   ```calm describe app AppFromDSL-<Initials> --out json | jq '.status.resources.deployment_list[].substrate_configuration.element_list[].address'```
-
-
-<!--- ![Alt text](images/getip.png) --->
 ![Alt text](images/jqout.png)
 
--   Enter the IP in a web browser and this will take you to the nginx **"Welcome to DSL"** web page
+-   ウェブブラウザでIPアドレスを入力すると、nginxによる **"Welcome to DSL "** のウェブページが表示されます。
 
 ![Alt text](images/welcome2.png)
 
-## Log into Prism Central to verify
+## Prism Centralにログインして確認する
 
--   Check the blueprint created from DSL
+-   DSLから作成したブループリントを確認
 
--   Check the application launched from DSL
+-   DSLから起動したアプリケーションを確認
 
-## Looking back
+## 終わりに
 
-As you went through this lab not only did you use Calm DSL, but you also used several native Linux tools such as vi, curl, grep, cat, pipe, and redirects.  Calm DSL allows extended felxibily by combining it with these powerful tools.  Think about how you can add git to this workflow to track changes or modify blueprints with sed
+この演習では、Calm DSLを使用するだけでなく、vi, curl, grep, cat, pipe, redirects などのLinuxネイティブツールも使用しました。Calm DSL は、これらの強力なツールと組み合わせることで、柔軟な拡張を可能にします。このワークフローにgitを追加して変更を追跡したり、sedを使ってブループリントを修正したりする方法を考えてみましょう。
 
-## Optional: Getting started with git
+## 任意: Gitとは
 
-Speaking of git lets contiue on and push our blueprint to git.  We will need a github.com account before you can get started
+私たちのブループリントを git にプッシュしてみましょう。 始める前にgithub.comのアカウントが必要です。
 
--   Logon to git and create new repo "dsl-blueprints"
+-   git にログインして新しいレポジトリ、"dsl-blueeprints"を作成します。
 
--   From the "HelloBlueprint" directory run:
+-   HelloBlueprintディレクトリから以下を実行します。
 
-    - ```echo "# dsl-blueprints" >> README.md``` to create a README
+    - ```echo "# dsl-blueprints" >> README.md``` : READMEを作成します
 
-    - ```git init``` initialize git in your working directory
+    - ```git init``` : 作業ディレクトリで git を初期化します。
 
-    - ```git config --global user.email "<youremail>@example.com"```  identify yourself
+    - ```git config --global user.email "<youremail>@example.com"``` : あなたのgithub ID
 
-    - ```git config --global user.name "<GitUserName>"``` identify yourself
+    - ```git config --global user.name "<GitUserName>"``` :  あなたのgithub パスワード
 
-    - ```git config --global color.ui true``` because colors are cool
+    - ```git config --global color.ui true``` : わかりやすいように色付けします
 
-    - ```git remote add origin https://github.com/<GitUserName>/dsl-blueprints.git``` to add your new github repo
+    - ```git remote add origin https://github.com/<GitUserName>/dsl-blueprints.git``` : あなたのリモートレポジトリを追加します。
 
-    - ```git remote -v``` to verify your remote origin
-
+    - ```git remote -v``` : あなたのリモートレポジトリの詳細を確認します。
 
     ![Alt text](images/gitsetup.png)
 
-    - ```git status``` to see whats being tracked
+    - ```git status``` : gitにより管理されているコードセットを確認します。
 
-    - ```git add --all``` adds all files in the current directory into staging
+    - ```git add --all``` : カレントディレクトリ内のすべてのファイルをステージングに追加します。
 
-    - ```git status``` to see the change after adding the files
-
+    - ```git status``` : ファイルを追加した後の変更点を確認します。
 
     ![Alt text](images/gitstatus.png)
 
-    - From the above output we can see there are some keys so lets remove those since this is being pushed to a public repo
+    - 上の出力を見ると、いくつかの鍵があることがわかりますので、公開レポにプッシュされているので、それらを削除しましょう。
 
-    - ```git rm --cached .local -r```
+    - ```git rm --cached .local -r``` : .localファイルを削除します。
 
-    - ```git status``` to verify they were removed
-
+    - ```git status``` : コードセットを確認します。
 
     ![Alt text](images/gitremove.png)
 
-    - ```git commit -m "My DSL blueprints"``` to commit the files
-
+    - ```git commit -m "My DSL blueprints"``` : コードセットをコミットします。
 
     ![Alt text](images/gitcommit.png)
 
-     - ```git push -u origin master``` to push to git.  You will be prompted for your user/pass unless you setup key access to github
-
+     - ```git push -u origin master``` :  Githubのリモートレポジトリに送信します。githubへのキーアクセスを設定しない限り、ユーザー/パスの入力を求められます。
 
     ![Alt text](images/gitpush.png)
 
-     -  Check your github repo and verify your files were pushed.  Now that your blueprints exists in both Calm and github lets increase the memory to 8 in the blueprint by running:
+     -  Githubのレポをチェックして、ファイルがプッシュされたことを確認してください。 あなたのブループリントはCalmとGithubの両方に存在ます。以下を実行し、ブループリント中のメモリを8に増やしてみます。
 
-        - ```sed -i 's/memory = 4/memory = 8/g' blueprint.py``` use the linux sed tool to change the memory config
+        - ```sed -i 's/memory = 4/memory = 8/g' blueprint.py``` : linuxのsedツールを使ってメモリ設定を変更する
 
-        - ```git add blueprint.py```
+        - ```git add blueprint.py``` : 変更内容をステージング環境に追加します。
 
-        - ```git commit -m "change memory"```
+        - ```git commit -m "change memory"``` : 変更内容をコミットします。
 
-        - ```git push -u origin master```
+        - ```git push -u origin master``` : 変更内容をリモートレポジトリ(github)に送信します。
 
-    - Back in github there is a new verion under the "history" of blueprint.py with the changed memory
+    - githubに戻ると、blueprint.pyの "history"の下に新しいバージョンがあり、メモリが変更されています。
 
     ![Alt text](images/diff.png)
 
-    ## Looking back
