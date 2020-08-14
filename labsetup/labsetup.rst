@@ -11,26 +11,26 @@ Projectを作成する
 
 #. **Prism Central** で :fa:`bars` **> Services > Calm** を選択します。
 
-#. 左側のメニューから **Project** を選択し、 **+Create Project** をクリックします。
+#. 左側のメニューから **Project** を選択し、 **+プロジェクトを作成** をクリックします。
 
    .. figure:: images/2.png
 
 #. 以下のフィールドに入力します。
 
-   - **Project Name** - **あなたのイニシャル** -Project
-   - **Users, Groups, and Roles** の配下で **+ User** を選択します。
-      - **Name** - Administrators
-      - **Role** - Project Admin
-      - **Action** - Save
-   - **Infrastructure** の配下で **Select Provider > Nutanix** を選択します。
-   - **Select Clusters & Subnets** をクリックします。
+   - **プロジェクト名** - **あなたのイニシャル** -Project
+   - **ユーザー、グループ、ロール** の配下で **+ユーザー** を選択します。
+      - **名前** - Administrators
+      - **ロール** - Project Admin
+      - **アクション** - Save
+   - **インフラストラクチャ** の配下で **プロバイダを選択 > Nutanix** を選択します。
+   - **クラスタおよびサブネットを選択** をクリックします。
    - **あなたに割り当てられたクラスタ** を選択します。
-   - **Subnets** にて **Primary** と **Secondary** を選択し、 **Confirm** をクリックします。
+   - **サブネット** にて **Primary** と **Secondary** を選択し、 **確認** をクリックします。
    - :fa:`star` をクリックし、 **Primary** をデフォルトのネットワークに設定します。 
 
    .. figure:: images/3.png
 
-#. **Save & Configure Environment** をクリックします。
+#. **環境の保存および設定** をクリックします。
 
 Deploying a Windows Tools VM
 ++++++++++++++++++++++++++++
