@@ -1,132 +1,125 @@
 .. glossary:
 
 ------------
-Glossary
+用語集
 ------------
 
-There are a multitude of familiar industry concepts and overloaded terms which have specific meanings when used by Calm.
-Refer to this glossary of Calm terms to help orient your discovery and mastery.
-Please see the :ref:`Additional Resources <additional-resources>` for deeper exploration!
+業界ではおなじみの概念や、Calmが使用する際に特定の意味を持つ用語が多数存在します。この Calm の用語集を参照して、発見と習得の方向付けを行ってください。詳細は追加のリソースを参照してください。
 
-Calm Terms
+Nutanix Calm用語集
 ++++++++++++++++++++
 
 .. glossary::
 
-    Action
-        A set of seqentially executed :term:`tasks <task>` in a :term:`blueprint`.
-        Basic actions included in every blueprint consist of: Create, Delete, Stop, Start, Restart.
-        A developer role can create additional custom actions (such as a runbook), scale-in and scale-out actions, pre- and post- create actions.
+    アクション
+        :term:`ブループリント` の中で、順次実行される :term:`タスク <タスク>` のセット。
+        全てのブループリントに含まれる基本的なアクションは以下のようになる。作成、削除、停止、開始、再起動。
+        開発者のロールは、追加のカスタムアクション(ランブックなど)、スケールインとスケールアウトのアクション、作成前と作成後のアクションを作成することができます。
 
-    Application
-        A deployment instance of a :term:`blueprint`, also a top level Calm menu icon.
+    アプリケーション
+        :term:`ブループリント` のデプロイメントインスタンスであり、トップレベルのCalmメニューアイコンでもあります。
 
-    Application Profile
-        A developer role can bundle and name a set of :term:`blueprint` variables and service creation definitions into a :term:`Application Profile`.
-        An operator role can choose an application profile during blueprint launch for deployment choice.
-        Examples: service resource sizes (small, medium, or large), deployment scenarios (development, staging, or production).
+    アプリケーションプロファイル
+        開発者ロールは、 :term:`ブループリント` 変数とサービス作成定義のセットを :term:`アプリケーションプロファイル` にバンドルして名前を付けることができます。
+        オペレータロールは、デプロイメントの選択のためにブループリントの起動時にアプリケーションプロファイルを選択することができます。
+        例: サービスリソースのサイズ (小、中、大)、展開シナリオ (開発、ステージング、本番)。
 
-    Blueprint
-        An application model of :term:`service` topology with orchestrational :term:`dependency` of :term:`action` and :term:`task`,
-        a blueprint must contain at least one :term:`service` and default :term:`application profile`.
-        Also a top level Calm menu icon.
+    ブループリント
+        :term:`アクション` と :term:`タスク` の :term:`依存性` をオーケストレーションした :term:`サービス` トポロジのアプリケーションモデル。
+        ブループリントには、少なくとも一つの :term:`サービス` とデフォルトの :term:`アプリケーションプロファイル` が含まれていなければなりません。
+        また、トップレベルの Calm メニューアイコンも含まれていなければなりません。
 
-    Brownfield
-        A blueprint consisting of imported :term:`existing machine` from a :term:`provider`.
+    ブラウンフィールド
+        プロバイダからインポートされた :term:`既存のマシン` から構成されるブループリント。
 
     Calm
-        Calm is an application lifecycle manager, which provides an automation platform to model your business governance, applications, and infrastructure together as a single artifact: the blueprint.
-        Currently, Calm is delivered in Nutanix :term:`Prism Central` and enabled with one-click.
+        Calmはアプリケーションライフサイクルマネージャであり、ビジネスガバナンス、アプリケーション、インフラストラクチャを単一の成果物である青写真としてモデル化するための自動化プラットフォームを提供します。
+        現在、CalmはNutanix :term:`Prism Central` で提供され、ワンクリックで有効になります。
 
-    Dependency
-        A logical sequential connection between services, orchestrating their basic actions together, indicated by a white arrow.
-        A generated or developer specified sequential connection between :term:`task` (across services in the same action), indicated by an orange arc.
+    依存関係
+        サービス間の論理的なシーケンシャル接続で、サービスの基本的なアクションを一緒にオーケストレーションします。
+        オレンジ色の円弧で示された :term:`タスク` (同じアクションのサービス間)の間に生成された、または開発者が指定したシーケンシャルな接続。
 
-    Epsilon
-        The workflow engine of Calm, it is an internal component controlled by Life Cycle Manager, and used by other :term:`Prism Central` facilites.
+    epsilon
+        Calmのワークフローエンジンであり、Life Cycle Managerによって制御される内部コンポーネントであり、 :term:`Prism Central` ファシリティでも使用されます。
 
     eScript (Epsilon Script)
-        A Calm :term:`task` type to execute a local, restricted Python environment.
+        ローカルで制限されたPython環境を実行するための :term:`task` タイプ。
 
-    Existing Machine
-        An existing service (not provisioned by Calm) which can be managed by :term:`task`.
+    既存のマシン
+        :term:`task` で管理できる既存のサービス(Calm でプロビジョニングされていない)。
 
     Kubernetes
-        A container management and hosting system, see https://kubernetes.io
+        コンテナ管理およびホスティングシステム、https://kubernetes.io を参照してください。
 
-    Macro
-        Either a Calm built-in or blueprint specified :term:`variable` that can be used in :term:`task` and variables.
+    マクロ
+        :term:`task` と変数で使用できるCalmの組み込みまたはブループリントで指定された :term:`変数` 。
 
-    Marketplace
-        An end-user, self-service portal of published Calm blueprints, controlled by projects and roles, in Prism Central.
-        Also a top level Calm menu icon.
+    マーケットプレイス
+        Prism Centralで公開されているCalmのブループリントを、プロジェクトとロールで管理するエンドユーザー向けのセルフサービスポータルです。
+        また、トップレベルのCalmメニューアイコンもあります。
 
     Prism Central
-        The Nutanix scale-out control plane to manage multiple joined Nutanix clusters and provide
-        advanced management capabilites (:term:`Calm`, :term:`Flow`, :term:`Karbon`, etc.) from a single pane of glass web console.
+        Nutanixのコントロールプレーンで複数のNutanixクラスタを管理して高度な管理機能(:term:`Calm`, :term:`Flow` , :term:`Karbon` など) をウェブコンソールから利用できます。
 
-    Project
-        A combined bundle of users or groups associated with :term:`roles <Role>` who can access :term:`providers <Provider>`
-        with resource quotas.
-        Also a top level Calm menu icon.
+    プロジェクト
+        :term:`プロバイダ` にアクセスできる :term:`ロール` に関連付けられたユーザまたはグループのバンドル。リソースクォータを使用。
 
-    Provider
-        An infrastructure host that provides :term`services <service>` with specified show back resource costs.
-        Specified in Calm > Settings.
+    プロバイダ
+        :term:`サービス` を提供するインフラストラクチャホスト。
 
-    Role
-        A set of permissions that define a user's abilities. e.g.: start a VM, create a Calm blueprint.
+    ロール
+        VMの起動、Calmのブループリントの作成など、ユーザーの権限を定義する一連のグループ。
 
-    Runtime
-        A runtime property allows the specified property to be overriden at :term:`blueprint` or action launch.
+    ランタイム
+        ランタイムプロパティは、指定されたプロパティを :term:`ブループリント` やアクションの起動時に上書きすることを可能にします。
 
-    Secret
-        A credential password or key, an :term:`application profile` or service variable specified with a secret property.
-        Secrets are specified by the developer :term:`role`, they are hidden when a blueprint is saved to prevent stealing.
-        Secrets are blanked when a blueprint is exported and secrets are blanked out in :term:`task` output.
+    シークレット
+        クレデンシャルのパスワードまたはキー、 :term:`アプリケーションプロファイル` 、または秘密のプロパティで指定されたサービス変数。
+        シークレットは開発者 :term:`ロール` によって指定され、ブループリントが保存されると盗用を防ぐために隠されます。
+        ブループリントがエクスポートされるとシークレットは空白になり、 :term:`task` の出力ではシークレットは空白になります。
 
-    Service
-        An instance of a :term:`substrate`, typically a virtual machine, existing machine, or a :term:`Kubernetes` pod.
+    サービス
+        典型的には仮想マシン、既存のマシン、または :term:`Kubernetes` のPodのインスタンス。
 
     Substrate
-        An infrastructure :term:`provider` instance, a :term:`blueprint` can use all the providers enabled in a :term:`project`.
+        インフラストラクチャ :term:`プロバイダ` のインスタンス。アプリケーションを実行するための基盤環境。
 
-    Task
-        An individual stage of operational execution in an :term:`action`.
+    タスク
+        :term:`アクション` の中の運用実行の個々のステージ。
 
-    Variable
-        A :term:`blueprint` property: statically set by the developer :term:`role` with a default value,
-        used as a macro in :term:`task`, and specified with a :term:`runtime` property to delegate setting by an operator role during blueprint launch.
+    変数
+        開発者によって静的に設定された :term:`ブループリント` のプロパティ。
+        :term:`タスク` のマクロとして使用され、 :term:`ランタイム` プロパティで指定することで、ブループリントの起動時に利用者に設定を委譲することができます。
 
-Nutanix Products
+Nutanix製品
 ++++++++++++++++++++
 
 .. glossary::
 
     Calm
-        Self-service application-centric automation and management, see :term:`Calm` and https://www.nutanix.com/products/calm.
-        Currently, Calm is delivered in Nutanix :term:`Prism Central` and enabled with one-click.
+        セルフサービスのアプリケーション中心の自動化と管理については、 :term:`Calm` と https://www.nutanix.com/products/calm を参照してください。
+        現在、Calm は Nutanix :term:`Prism Central` で提供されており、ワンクリックで利用可能です。
 
     Era
-        Database-as-a-Service (DBaaS) automation and data management, see https://www.nutanix.com/products/era.
+        データベース・アズ・ア・サービス（DBaaS）の自動化とデータ管理については、https://www.nutanix.com/products/era を参照してください。
 
     Flow
-        Microsegmentation (distributed firewall) security and management for Nutanix cluster services,
-        see https://www.nutanix.com/products/flow.
-        Flow is delivered in Nutanix :term:`Prism Central` and enabled with one-click.
+        Nutanixクラスタサービスのマイクロセグメンテーション（分散ファイアウォール）セキュリティと管理
+        https://www.nutanix.com/products/flow を参照してください。
+        Flowは Nutanix :term:`Prism Central` で提供され、ワンクリックで有効になります。
 
-    Karbon
-        A platform-as-a-service (PaaS), managed container offering for :term:`Kubernetes`,
-        see https://www.nutanix.com/products/karbon.
-        Currently, Karbon is delivered in Nutanix :term:`Prism Central` and enabled with one-click.
+    Karboin
+        :term:`Kubernetes` のプラットフォーム・アズ・ア・サービス (PaaS)、マネージドコンテナの提供。
+        https://www.nutanix.com/products/karbon を参照してください。
+        現在、Karbon は Nutanix :term:`Prism Central` で提供され、ワンクリックで有効になっています。
 
     Prism Central
-        See :term:`Prism Central` and https://www.nutanix.com/products/prism.
+        :term:`Prism Central` や https://www.nutanix.com/products/prism を参照のこと。
 
 .. _additional-resources:
 
-Additional Resources
+追加のリソース
 ++++++++++++++++++++
 
-#. [Blog] `Calm Terminology <https://next.nutanix.com/blog-40/calm-terminology-actions-and-dependencies-33852>`_ `[Source] <https://github.com/MichaelHaigh/calm-blueprints/blob/master/DependencyTaskExample/README.md>`_
-#. `Nutanix Calm Admin Operations Guide: Major Components <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Calm-Admin-Operations-Guide-v297:nuc-nucalm-major-components-c.html>`_
+#. [ブログ] `Calm Terminology <https://next.nutanix.com/blog-40/calm-terminology-actions-and-dependencies-33852>`_ `[Source] <https://github.com/MichaelHaigh/calm-blueprints/blob/master/DependencyTaskExample/README.md>`_
