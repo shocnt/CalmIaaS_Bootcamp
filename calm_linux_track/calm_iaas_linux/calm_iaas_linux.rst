@@ -4,7 +4,7 @@
 Calm: LinuxによるInfrastructure as a Service構築
 ---------------------------------
 
-*この演習の所要時間は20分です。*
+*この演習の所要時間は約20分です。*
 
 はじめに
 ++++++++
@@ -22,9 +22,7 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
 
 このラボでは、**CentOS 7** のLinuxサーバを作成します。
 
-**ここで１回UIを英語にする旨記載**
-
-#. **Prism Central** で、 :fa:`bars` **> Services > Calm** を選択します。
+#. **Prism Central** で、 :fa:`bars` **> サービス > Calm** を選択します。
 
    .. figure:: images/1_access_calm.png
 
@@ -34,58 +32,58 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
 
      アイコンにマウスを当てるとメニューがテキストで表示されます。
 
-#. **+ Create Blueprint > Single VM Blueprint** を選択します。
+#. **+ ブループリントの作成 > 単一の仮想マシンのブループリント** を選択します。
 
 #. 以下の項目を記入します。
 
-   - **Name** - *あなたのイニシャル*-CentOS-IaaS
-   - **Description** - ブループリントの説明を書きます。
-   - **Project** - *あなたのイニシャル*-Project
+   - **名前** - *あなたのイニシャル* -CentOS-IaaS
+   - **説明** - ブループリントの説明を書きます。
+   - **プロジェクト** - *あなたのイニシャル* -Project
 
    .. figure:: images/2_centos_1.png
        :align: center
        :alt: CentOS 7 Blueprint Settings
 
-       CentOS 7 Blueprint Settings
+       CentOS 7のブループリント設定
 
-#. **VM Details** をクリックし、次のステップに進みます。
+#. **仮想マシンの詳細** をクリックし、次のステップに進みます。
 
-#. Note the following fields on the **VM Details** page:
+#. **仮想マシンの詳細**ページでは、以下のフィールドを入力します。
 
-   - **Name** - The internal-to-Calm name of the VM.  Can be left as default.
-   - **Cloud** - The cloud we're deploying the infrastructure on.  Should be left as **Nutanix**.
-   - **Operating System** - The type of OS we're deploying.  It should be left as Linux if you're using CentOS 7, or changed to Windows if using Windows 2016.
+   - **名前** - Calm内部で用いる仮想マシン名。 デフォルトのままにしておくことができます。
+   - **クラウド** - 仮想マシンの展開先となるクラウド。 **Nutanix** を設定します。
+   - **オペレーティングシステム** - デプロイするOSの種類。CentOS 7を使用する場合はLinuxのまま、Windows 2016を使用する場合はWindowsに変更する必要があります。
 
    .. figure:: images/4_centos_2.png
        :align: center
        :alt: CentOS 7 VM Details
 
-       CentOS 7 VM Details
+       CentOS 7の仮想マシンの詳細
 
    .. figure:: images/5_windows_2.png
        :align: center
        :alt: Windows 2016 VM Details
 
-       Windows 2016 VM Details
+       Windows 2016の仮想マシンの詳細
 
-#. Click **VM Configuration** to proceed to the next step.
+#. 次のステップに進むには、 **VM設定** をクリックします。
 
-#. On this page, we'll be specifying a variety of settings for our infrastructure.
+#. このページでは、インフラストラクチャの様々な設定を指定していきます。
 
-   - **General Configuration**
+   - **一般構成**
 
-     - **VM Name** - this is the name of the virtual machine according to the hypervisor/cloud.  It can be left as default.
-     - **vCPUs** - 2 (Mark the field as **runtime** by clicking the running man icon so it turns blue.  This allows the end user to modify this field at launch.)
-     - **Cores per vCPU** - 1
-     - **Memory (GiB)** - 4 (Mark this field as **runtime**.)
+     - **VM名** - ハイパーバイザー/クラウドに応じた仮想マシンの名前です。デフォルトのままでも構いません。
+     - **vCPUs** - 2 ( **走る人** のアイコンをクリックしてフィールドを **ランタイム** としてマークすると、青くなります。これにより、エンドユーザーはブループリント起動時にこのフィールドを変更することができます。)
+     - **vCPUあたりのコア数** - 1
+     - **メモリー (GiB)** - 4 (このフィールドを **ランタイム** としてマークします。)
 
      .. figure:: images/6_centos_3.png
          :align: center
          :alt: CentOS 7 VM Configuration - General Configuration
 
-         CentOS 7 VM Configuration - General Configuration
+         CentOS 7のVM設定 - 一般構成
 
-   - **Guest Customization** - Guest customization allows for the modification of certain settings at boot.  Linux OSes use "Cloud Init", while Windows OSes use "Sysprep".  Select the **Guest Customization**, and then paste in the following script.
+   - **ゲストのカスタマイズ** - ゲストのカスタマイズでは、起動時に特定の設定を変更することができます。Linux OSでは「Cloud Init」、Windows OSでは「Sysprep」を使用します。 **ゲストのカスタマイズ** を選択し、以下のスクリプトを貼り付けます。
      - CentOS 7
 
        .. literalinclude:: cloud-init.sh
@@ -95,38 +93,38 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
            :align: center
            :alt: CentOS 7 Cloud Init
 
-           CentOS 7 Cloud Init
+           CentOS 7のCloud Init
 
      .. note::
-        Take note of the "@@{vm_password}@@" text.  In Calm the "@@{" and "}@@" characters represent a macro.  At runtime, Calm will automatically "patch" or substitute in the proper value(s) when it encounters a macro.  A macro could represent a system defined value, a VM property, or (as it does in this case) a runtime variable.  Later in this lab we'll create a runtime variable with the name "vm_password".
+        "@@{vm_password}@@"の文字に注意してください。Calm では、"@@{}@@"文字はマクロを表します。実行時には、マクロに遭遇した場合、Calmは自動的にマクロを適切な値に置き換えます。マクロは、システムで定義された値、VMプロパティ、または変数を表すことができます。このラボでは後ほど、"vm_password "という名前の変数を作成します。
+        
+   - **ディスク** - ディスクは、デプロイするVMやインフラストラクチャのストレージです。既存のイメージをベースにしている場合もあれば、VMが追加のストレージを利用できるように空のディスクをベースにしている場合もあります。例えば、Microsoft SQLサーバーでは、ベース OSのディスク、SQL Serverのバイナリディスク、データベースデータファイルディスク、TempDB ディスク、ロギングディスクが必要になるかもしれません。本演習では、既存のイメージをベースにした単一のディスクを使用します。
 
-   - **Disks** - A disk is the storage of the VM or infrastructure that we're deploying.  It could be based on a pre-existing image (as it will in our case), or it could be based on a blank disk to enable the VM to consume additional storage.  For instance, a Microsoft SQL server may need its base OS disk, a separate SQL Server binary disk, separate database data file disks, separate TempDB disks, and a separate logging disk.  In our case we're going to have a single disk, based on a pre-existing image.
-
-     - **Type** - The type of disk, this can be left as default (**DISK**).
-     - **Bus Type** - The bus type of the disk, this can be left as default (**SCSI**).
-     - **Operation** - How the disk will be sourced.  "Allocate on Storage Container" is used for blank disks.  We're going to keep the default, **Clone from Image Service**, as we're using a pre-defined image.
-     - **Image** - The image the VM will be based off of.  Select **CentOS7.qcow2**.
-     - **Bootable** - Whether or not this particular disk is bootable.  A minimum of one disk *must* be bootable.  In our case, leave it **enabled**.
+     - **タイプ** - ディスクの種類、これはデフォルトのままにします( **DISK** )。
+     - **バスタイプ** - ディスクのバスタイプ、これはデフォルトのままにします( **SCSI** )。
+     - **オペレーション** - ディスクがどのように提供されるか。"Allocate on Storage Container"は空のディスクを追加するために使用します。本演習では事前に定義された仮想マシンイメージを使用しているので、デフォルトの **Clone from Image Service** のままにしておきます。
+     - **Image** - 仮想マシンのベースとなるイメージ。 **CentOS7.qcow2** を選択します。
+     - **ブート可能な** - このディスクによりオペレーティングシステムを起動可能かどうか。最低でも1つのディスクがブート可能でなければなりません。ここではチェック済のままにしておきます。
 
      .. figure:: images/10_centos_5.png
          :align: center
          :alt: CentOS 7 VM Configuration - Disks
 
-         CentOS 7 VM Configuration - Disks
+         CentOS 7のVM設定 - ディスク
 
-   - **Boot Configuration** - The boot method of the VM.  We'll leave the default of **Legacy BIOS**.
+   - **ブート設定** - VMの起動方法です。デフォルトの **Legacy BIOS** のままにしておきます。
 
-   - **vGPUs** - Whether or not the VM needs a virtual graphical processing unit.  We'll leave the default of none.
+   - **vGPUs** - VMにGPUが必要かどうか。 デフォルトのnoneのままにしておきます。
 
-   - **Categories** - Categories span several different products and solutions within the Nutanix portfolio.  They enable you to set security policies, protection policies, alert policies, and playbooks.  Simply choose the categories corresponding to the workload, and all of these policies will automatically be applied.  In this lab however, we're going to leave this field **blank**.
+   - **カテゴリ** - カテゴリは、Nutanixのポートフォリオ内のいくつかの異なる製品とソリューションにまたがって利用されます。これらにより、セキュリティポリシー、保護ポリシー、アラートポリシー、およびプレイブックを適用するための属性データとしてのカテゴリを付与することができます。 ワークロードに対応するカテゴリを選択するだけで、これらすべてのポリシーが自動的に適用されます。しかし、このラボでは、このフィールドは**空白**のままにしておきます。
 
    .. figure:: images/12_boot_gpu_cat.png
        :align: center
        :alt: VM Configuration - Boot Configuration, vGPUs, and Categories
 
-       VM Configuration - Boot Configuration, vGPUs, and Categories
+       VM設定 - Boot設定, vGPU, カテゴリ
 
-   - **NICs** - Network adapters allow communication to and from your virtual machine.  We'll be adding a single NIC by clicking the **blue plus**, then selecting **Primary** in the dropdown, and selecting the **Dynamic** radio button.
+   - **NICs** - ネットワークアダプタを使用すると、仮想マシンとの通信が可能になります。 **青色の+** をクリックし、ドロップダウンで **Primary** を選択し、 **動的** ラジオボタンを選択して、1つのNICを追加します。
 
    .. figure:: images/13_vm_nic.png
        :align: center
@@ -134,328 +132,323 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
 
        VM Configuration - NICs
 
-   - **Serial Ports** - Whether or not the VM needs a virtual serial port.  We'll leave the default of **none**.
+   - **シリアルポート** - VMに仮想シリアルポートが必要かどうか。デフォルトの **none** のままにしておきます。
 
    .. figure:: images/14_serial.png
        :align: center
        :alt: VM Configuration - Serial Ports
 
-       VM Configuration - Serial Ports
+       VM Configuration - シリアルポート
 
-#. At the bottom of the page, click the blue **Save** button.  It is expected to have a single error about an incorrect macro due to our Guest Customization containing "vm_password".  If you have additional errors, please be sure to resolve them before continuing to the next section.
+#. ページの下部にある青い **保存** ボタンをクリックします。ゲストのカスタマイズに"vm_password"という未定義のマクロが含まれているため、不正なマクロに関するエラーが1つ発生していることが予想されます。追加のエラーがある場合は、次のセクションに進む前に必ず解決してください。
 
    .. figure:: images/15_error.png
        :align: center
        :alt: Blueprint Save - Error
 
-       Blueprint Save - Error
+       Blueprint Save - エラー
 
-
-Defining Variables
+変数を定義する
 ++++++++++++++++++
 
-Variables allow extensibility of Blueprints, meaning a single Blueprint can be used for multiple purposes and environments depending on the configuration of its variables.  Variables can either be static values saved as part of the Blueprint or they can be specified at **Runtime** (when the Blueprint is launched), as they will in this case.
+変数は、ブループリントの拡張性を向上します。つまり、1つのブループリントを、その変数の設定に応じて複数の目的や環境で使用することができます。変数は、ブループリントの一部として保存された静的な値か、 **ランタイム** （ブループリントの起動時）に指定することができます。
 
-In a Single VM blueprint, variables can be accessed by clicking the **App variables** button near the top.  By default, variables are stored as a **String**, however additional **Data Types** (Integer, Multi-line String, Date, Time, and Date Time) are all possible.  Any of these data types can be optionally set as **Secret**, which will mask its value and is ideal for variables such as passwords.  There are also more advanced **Input Types** (versus the default **Simple**), however these are outside the scope of this lab.
+単一の仮想マシンのブループリントでは、上部にある **アプリ変数** ボタンをクリックすると、変数にアクセスできます。デフォルトでは、変数は **文字列** として保存されますが、別の **データ型** (整数、複数行の文字列、日付、時刻、および日付時刻)を使用することもできます。これらのデータ型のいずれも、オプションで **秘匿情報** として設定することができます。また、より高度な **入力方法** もありますが、この演習の範囲外です。
 
-Variables can be used in scripts executed against objects using the **@@{variable_name}@@** construct (called a macro). Calm will expand and replace the variable with the appropriate value before sending to the VM.
+変数は、 **@@{変数名}@@** という文字列（マクロと呼ばれる）を使用してオブジェクトに対して実行されるスクリプトで使用することができます。Calmは、仮想マシンに送信する前に変数を展開して適切な値に置き換えます。
 
-#. Click the **App variables** button along the top pane to bring up the variables menu.
+#. 上部ペインの **アプリ変数** ボタンをクリックすると、変数メニューが表示されます。
 
-#. In the pop-up that appears, you should see a note stating you currently do not have any variables.  Go ahead and click the blue **+ Add Variable** button to add our variable, and fill out the following fields.
+#. 表示されたポップアップでは、現在変数が設定されていないことが表示されるはずです。先に進み、青い **+ 変数の追加** ボタンをクリックして変数を追加し、以下のフィールドに記入してください。
 
-   - Along the **left column**, click the **running man** icon to mark this variable as **runtime**.
-   - In the main pane, set the variable **Name** as **vm_password**.  This name must *exactly* match (including case) the value within our macro from our Guest Customization script, otherwise we'll continue to get an error when we save.
-   - Leave the **Data Type** as the default, **String**.  Feel free to investigate the other options, however discussion about them are outside the scope of this lab.
-   - For the **Value**, leave blank, as we want the end users to specify their own VM password.
-   - **Enable** the **Secret** checkbox, as we do not want this password to be visible.
-   - Click the **Show Additional Options** link at the bottom.
-   - Leave the **Label** field blank.
-   - In the **Description** field, paste in **Create a password for the user "centos"**.
-   - **Enable** the **Mark this variable mandatory** checkbox.  This will ensure that the end user enters a password, which is required since we did not provide default value.
-   - Leave the other two checkboxes unselected.
+   - **左の列** において、 **走る人** のアイコンをクリックして、この変数を **ランタイム** としてマークします。
+   - メインペインで、変数 **名前** を **vm_password** に設定します。 この名前は、仮想マシンのカスタマイズスクリプトのマクロ内の値と正確に一致しなければなりません（大文字小文字を含めて）。
+   - **データのタイプ** はデフォルトの **String** のままにしてください。他のオプションについてはこの演習の範囲外です。
+   - **値** には、エンドユーザが自分の仮想マシンパスワードを指定させたいので、空白のままにしておきます。
+   - パスワードを秘匿化するため、 **秘密の** のチェックボックスをチェックします。
+   - **追加オプションの表示** をクリックします。
+   - **ラベル** フィールドを空白にします。
+   - **説明** フィールドにおいて **"centos"ユーザのパスワードを入力してください。** と入力します。
+   - **この変数を必須としてマーク** のチェックボックスをチェックします。これによりエンドユーザーにパスワード入力を必須とすることが出来ます。
+   - 他の2つのチェックボックスは非チェックのままにしておきます。
 
      .. figure:: images/16_variable.png
          :align: center
          :alt: Variable - vm_password
 
-         Variable - vm_password
+         変数 - vm_password
 
-#. Scroll to the bottom, and click the blue **Done** button.
+#. 下までスクロールして、青い **完了** ボタンをクリックします。
 
-#. Click **Save**.  It is expected to receive a **Warning** stating that the value of our secret variable is empty.  This is needed as there is not way to determine the value of a secret once you save the blueprint, so this warning alerts a user in the event they accidentally left it blank.  Warnings do not prevent users from launching or publishing the blueprint.  If you receive any other warning, or a red error, please resolve the issue before continuing on.
+#. **保存** をクリックします。秘密変数の値が空であることを示す **警告** が表示されます。これは、ブループリントを保存する際に秘密変数の値を決定する方法がないため、この警告が発生します。しかし、警告によって、ユーザーがブループリントを起動したり公開したりすることができなくなることはありません。その他の警告や赤いエラーが表示された場合は、先に進む前に問題を解決してください。
 
    .. figure:: images/17_warning.png
        :align: center
        :alt: Blueprint Save - Warning
 
-       Blueprint Save - Warning
+       Blueprint Save - 警告
 
-**ここで日本語UIに戻す旨記載**
-
-Launching the Blueprint
+ブループリントの起動
 +++++++++++++++++++++++
 
-Now that our blueprint is complete, take note of the buttons to the right of the save button:
+ブループリントが完成しましたが、保存ボタンの右側にあるボタンについて説明します。
 
-- **Publish** - this allows us to request to publish the blueprint into the Marketplace.  Blueprints have a 1:1 mapping to a Project, meaning only other users who are members of our own Project will have the ability to launch this blueprint.  Publishing blueprints to the Marketplace allows an administrator to assign any number of Projects to the Marketplace blueprint, which enables self service for any number of end users desired.
-- **Download** - this option downloads the blueprint in a JSON format, which can be checked into source control, or uploaded into another Calm instance.
-- **Launch** - this launches our blueprint and deploys our application and/or infrastructure.
+- **公開** - マーケットプレイスへのブループリントの公開を要求することができます。ブループリントはプロジェクトと1:1のマッピングを持っているので、自分のプロジェクトのメンバーである他のユーザーだけがこのブループリントを起動することができます。しかし、ブループリントをマーケットプレイスに公開することで、管理者は作成したブループリントを複数プロジェクトのユーザに対して割り当てることができ、複数プロジェクトのエンドユーザーにセルフサービスを提供することができます。
+- **ダウンロード** - このオプションは、ブループリントをJSON形式でダウンロードし、ソースコントロールシステムにチェックインしたり、別のCalmインスタンスにアップロードしたりすることができます。
+- **起動** - これはブループリントを起動し、私たちのアプリケーションや仮想マシンをデプロイします。
 
-#. Go ahead and click the **Launch** button, and enter the following:
+#. **起動**ボタンをクリックして、以下のように入力してください。
 
-    - **Name of the Application** - *initials*\ -CentOS-IaaS
+    - **アプリケーションの名前** - *あなたのイニシャル* -CentOS-IaaS
     - **vm_password** - Nutanix/4u
 
 .. figure:: images/18_launch.png
     :align: center
     :alt: Blueprint Launch
 
-    Blueprint Launch
+    ブループリントの起動
 
-#. Click **Create**, where you'll be redirectly the application page.
+#. **作成** をクリックすると、アプリケーションのページが表示されます。
 
-Managing your Application
+アプリケーションの管理
 +++++++++++++++++++++++++
 
-Wait several minutes for your application to change from a **Provisioning** state to a **Running** state.  If it instead changes to an **Error** state, navigate to the **Audit** tab, and expand the **Create** action to start troubleshooting your issue.
+アプリケーションが **Provisioning** 状態から **Running** 状態に変わるまで数分待ちます。 **エラー** 状態に変わった場合は、 **監査** タブに移動し、 **作成** アクションを展開して、問題のトラブルシューティングを開始します。
 
-Once your application is in a **Running** state, navigate around the five tabs in the UI:
+アプリケーションが **実行中** の状態になったら、UI上部のタブを見ていきます。
 
 .. figure:: images/19_app_tabs.png
     :align: center
     :alt: Application Tabs
 
-    Application Tabs
+    アプリケーションタブ
 
-- The **Overview** tab gives you information about any variables specified, the cost incurred (showback can be configured in the Calm Settings), an application summary, and a VM summary.
-- The **Manage** tab allows you to run actions against the application / infrastructure.  This includes basic lifecycle (start, restart, stop, delete), NGT management (install, manage, uninstall), and App Update, which allows for editing of basic VM resources.
-- The **Metrics** tab gives in depth information about CPU, Memory, Storage, and Network utilization.
-- The **Recovery Points** tab lists the history of VM Snapshots, and allows the user to restore the VM to any of these points.
-- The **Audit** tab shows every action run against the application, the time and user that ran a given action, and in depth information on the results of that action, including script output.
+- **概要** タブでは、指定された変数、発生したコスト（ショーバックはCALM設定で設定可能）、アプリケーションサマリー、および仮想マシンのサマリーについての情報が表示されます。
+- **管理** タブでは、アプリケーション/インフラストラクチャに対するアクションを実行できます。 これには、基本的なライフサイクル（起動、再起動、停止、削除）、NGT管理（インストール、管理、アンインストール）、および基本的なVMリソースの編集を可能にする仮想マシンの更新が含まれます。
+- **評価指標** タブでは、CPU、メモリ、ストレージ、ネットワークの使用率に関する詳細な情報を提供します。
+- **リカバリーポイント** タブには、VMスナップショットの履歴が表示され、ユーザーはこれらのポイントのいずれかにVMをリストアすることができます。
+- **監査** タブには、アプリケーションに対して実行されたすべてのアクション、アクションを実行した時間とユーザー、スクリプトの出力を含むアクションの結果に関する詳細な情報が表示されます。
 
-Next, view the common VM tasks available in the upper right corner of the UI:
+次に、UIの右上で利用できる共通のVMタスクを表示します。
 
 .. figure:: images/20_app_buttons.png
     :align: center
     :alt: Application Buttons
 
-    Application Buttons
+    アプリケーションボタン
 
-- The **Clone** button allows a user to duplicate the existing application into a new app that is manageable separately from the current application.  For a brand new application, this is equivalent to launching the blueprint again.  However, a user may have spent significant time customizing the existing application to suit their specific needs, and would like these changes to be present on the new app.
-- The **Snapshot** button creates a new recovery point of the VM, which allows a user to restore the VM.
-- The **Launch Console** button opens a console window to the VM.
-- The **Update** button allows for the end user to modify basic VM settings (this is equivalent to the **Manage > App Update** action).
-- The **Delete** button deletes the underlying VM and the Calm Application (this is equivalent to the **Manage > App Delete** action).
+- **クローン** ボタンを使用すると、既存のアプリケーションを、現在のアプリケーションとは別に管理可能な新しいアプリケーションに複製することができます。これはブループリントを再度起動することと同じです。
+- **スナップショット** ボタンをクリックすると、VMの新しいリカバリポイントが作成され、VMをリストアすることができます。
+- **コンソールを起動** ボタンを押すと、VMのコンソールウィンドウが開きます。
+- **更新** ボタンをクリックすると、エンドユーザーは基本的なVM設定を変更することができます（これは **管理 > 仮想マシンの更新** アクションと同等です）。
+- **削除** ボタンをクリックすると、基礎となるVMとCalmアプリケーションが削除されます（これは、 **Manage > App Delete** アクションと同等です）。
 
-Now that we're familiar with the application page layout, let's modify our application by adding additional memory, but let's do it in a way that we can recover from in case something goes wrong.
+アプリケーションのページレイアウトに慣れてきたところで、メモリを追加して仮想マシンを更新していきたいですが、何かあったときにリカバリーできるような方法でやっていきましょう。
 
-#. Click the **Snapshot** button in the upper right, and enter the following in the pop-up that appears: change the name to:
+#. 右上の **スナップショット** ボタンをクリックし、表示されたポップアップに次のように入力します。
 
-   - **Snapshot Name** - before-update-@@{calm_time}@@ (leave the rest as default)
+   - **スナップショット名** - before-update-@@{calm_time}@@ (他のオプションはデフォルトのままにします。)
 
    .. figure:: images/21_snapshot.png
        :align: center
        :alt: Application Snapshot
 
-       Application Snapshot
+       アプリケーションのスナップショット
 
-#. Click **Save**.
+#. **保存** をクリックします。
 
-#. Take note you're re-directed to the **Audit** tab.  Expand the **Snapshot Create** action to view the tasks of the snapshot.  Once complete, navigate to the **Recovery Points** tab, a validate that our new snapshot is listed.
+#. **監査** タブにリダイレクトされていることに注意してください。 **スナップショット作成** アクションを展開して、スナップショットのタスクを表示します。 完了したら、 **リカバリーポイント** タブに移動し、新しいスナップショットがリストされていることを確認します。
 
-#. Next, click the **Launch Console** button in the upper right, and log in to your VM.
+#. 次に、右上の **コンソールを起動** ボタンをクリックし、仮想マシンにログインします。
 
    - **Username** - centos
    - **Password** - Nutanix/4u
 
-#. To view the current memory on CentOS, run the command **free -h**.   Take note of the current memory allocated to your VM.
+#. CentOS上で現在のメモリを表示するには、 **free -h** コマンドを実行します。VMに割り当てられた現在のメモリをメモしておきます。
 
    .. figure:: images/22_centos_memory_before.png
        :align: center
        :alt: CentOS Memory - Before Update
 
-       CentOS Memory - Before Update
+       CentOS メモリ - 更新前
 
-#. Navigate back to the application page of Calm, and click the **Update** button in the upper right.  On the page that appears, increase the **Memory (GiB)** field by 2 GiB (for CentOS, 6 GiB).
+#. Calmのアプリケーションページに戻り、右上の **更新** ボタンをクリックします。表示されたページで、 **メモリ(GiB)** フィールドを2GiB(CentOSの場合は6GiBと入力します。)増やします。
 
-#. Click the blue **Update** button in the lower left.
+#. 左下の青い **更新** ボタンをクリックします。
 
-#. Validate that the memory field has been increased by 2 GiB, and click **Confirm**.
+#. メモリフィールドが2GiB増加したことを確認し、**確認**をクリックします。
 
    .. figure:: images/24_centos_confirm.png
        :align: center
        :alt: CentOS Memory - Confirm Change
 
-       CentOS Memory - Confirm Change
+       CentOS メモリ - 更新の確認
 
-#. In the **Audit** tab of Calm, wait for the **App Update** action to complete.
+#. Calmの **監査** タブで、 **アプリの更新** アクションが完了するのを待ちます。
 
-#. Back in the **VM Console**, run the same command from earlier to view the updated memory, and note that it has increased by 2 GiB.
+#. **仮想マシンのコンソール** に戻って、先ほどと同じコマンドを実行して、更新されたメモリを表示し、2GiB増加していることに注意してください。
 
    .. figure:: images/26_centos_memory_after.png
        :align: center
        :alt: CentOS Memory - After Update
 
-       CentOS Memory - After Update
+       CentOS メモリ - 更新後
 
-If anything went wrong with the VM Update, navigate to the **Recovery Points** tab, click **Restore** on the **before-update** snapshot we took earlier, and click **Confirm** on the pop-up.
+仮想マシンの更新で何か問題が発生した場合は、 **リカバリーポイント** タブに移動し、先ほど取得した **before-update** スナップショットの **リストア** をクリックし、ポップアップで **確認** をクリックします。
 
-Adding your Blueprints to the Marketplace
+ブループリントをマーケットプレイスに追加する
 +++++++++++++++++++++++++++++++++++++++++
 
-Now that we know we have a good blueprint, lets publish it to he Marketplace.
+ここではブループリントをマーケットプレイスに公開します。
 
-Publishing the Blueprint
+ブループリントの公開
 ........................
 
-#. Select |blueprints| **Blueprints** in the left hand toolbar to view and manage Calm blueprints.
+#. 左側のツールバーで、 |blueprints| **ブループリント** をクリックし、Calmのブループリントを表示します。
 
-#. Click your *intials*\ **-CentOS-IaaS** blueprint.
+#. **あなたのイニシャル-CentOS-IaaS**のブループリントをクリックしてください。
 
-#. Click the **Publish** button, and enter the following:
+#. **公開** ボタンをクリックして、以下のように入力します。
 
-   - **Name** - *initials*\ _CentOS_IaaS
-   - **Publish with secrets** - off
-   - **Initial Version** - 1.0.0
-   - **Description** - (Optional)
+   - **名前** - あなたのイニシャル_CentOS_IaaS
+   - **シークレットとともにパブリッシュ** - オフ
+   - **初期バージョン** - 1.0.0
+   - **説明** - 任意
 
    .. figure:: images/28_centos_publish_bp.png
        :align: center
        :alt: CentOS Publish Blueprint
 
-       CentOS Publish Blueprint
+       CentOS ブループリントの公開
 
-#. Click **Submit for Approval**.
+#. **承認用に送信** をクリックします。
 
    .. note::
 
-     Publish with Secrets: By default, the secret values from the blueprint are not preserved while publishing. As a result, during the launch of the marketplace item, the secret values will either be patched from the environment or the user will have to fill them in.
+     シークレットとともにパブリッシュ: デフォルトでは、ブループリントの認証情報は公開されたブループリントにおいて保存されません。その結果、マーケットプレイスアイテムの起動時に、認証情報は環境から入力されるか、ユーザーが埋めなければなりません。この動作を望まず、認証情報をそのまま保存したい場合は、このフラグを設定してください。
 
-     Set this flag if you do not want this behaviour and you would rather the secret values are preserved as is. *Credential passwords/keys and secret variables are considered secret values. While publishing with secrets, these values will be encrypted.*
-
-Approving Blueprints
+ブループリントの承認
 ....................
 
-#. Select |mktmgr-icon| **Marketplace Manager** in the left hand toolbar to view and manage Marketplace Blueprints.
+#. 左側のツールバーで、 |mktmgr-icon| **Marketplace Manager** をクリックし、マーケットプレイスのアイテムを表示します。
 
-#. You will see the list of Marketplace blueprints, and their versions listesd. Select **Approval Pending** at the top of the page.
+#. マーケットプレイスのブループリントとそのバージョンのリストが表示されます。ページ上部の **承認を保留** を選択します。
 
-#. Click your *intials*\ **_CentOS_IaaS** blueprint.
+#. *あなたのイニシャル* _CentOS_IaaS ブループリントを表示します。
 
-#. Review the available actions:
+#. 利用可能なアクションを確認します。
 
-   - **Approve** - Approves the Blueprint for publication to the Marketplace.
-   - **Reject** - Prevents  Blueprint from being launched or published in the Marketplace. The Blueprint will need to be submitted again after being rejected before it can be published.
-   - **Delete** - Deletes the blueprint submission to the Marketplace.
-   - **Launch** - Launches the Blueprint as an application, similar to launching from the Blueprint Editor.
+   - **承認** - マーケットプレイスに公開するためのブループリントを承認します。
+   - **拒否** - ブループリントがマーケットプレイスで公開されないようにします。ブループリントを公開するには、拒否された後に再度提出する必要があります。
+   - **削除** - マーケットプレイスへのブループリントの提出を削除します。
+   - **起動** - ブループリントエディタから起動するのと同様に、アプリケーションとしてブループリントを起動します。
 
-#. Review the available selections:
+#. 利用可能な選択肢を確認します。
 
-   - **Category** - Allows you to update the Category for the new Marletplace blueprint.
-   - **Projects Shared With** - Allows you to make the Marketplace blueprint only available to a certain project.
+   - **カテゴリ** - 新しいマーケットプレイスのブループリントのカテゴリを更新することができます。
+   - **共有するプロジェクト** - マーケットプレイスのブループリントを特定のプロジェクトでのみ利用できるようにします。
 
-#. Click **Approve**.
+#. **承認** をクリックします。
 
    .. figure:: images/29_centos_approve_bp.png
        :align: center
        :alt: CentOS Approve Blueprint
 
-       CentOS Approve Blueprint
+       CentOSブループリントの承認
 
-#. Select **Marketplace Blueprints** at the top of the page, and enter your *initials* in the search bar. You should see your blueprint listed now, with a Status of **Accepted**.
+#. ページの上部にある **マーケットプレイスブループリント** を選択し、検索バーにあなたの *イニシャル* を入力してください。あなたのブループリントが **認められた** のステータスで表示されているはずです。
 
    .. figure:: images/30_centos_marketplace_bp.png
        :align: center
        :alt: CentOS Marketplace Blueprint
 
-       CentOS Marketplace Blueprint
+       CentOS マーケットプレイスブループリント
 
-Launching your Blueprint from the Marketplace
+マーケットプレイスからブループリントを起動する
 +++++++++++++++++++++++++++++++++++++++++++++
 
-Now that we have published our blueprint to the Marketplace, we need to make an update to our *initials*\ -Project.
+マーケットプレイスからブループリントを起動するにあたり、 *あなたのイニシャル* -プロジェクトに更新を行う必要があります。
 
-Configuring Project Environment
+プロジェクト環境値の設定
 ...............................
 
-#. To launch a Blueprint directly from the Marketplace, we need to ensure our Project has all of the requisite environment details to satisfy the Blueprint.
+#. マーケットプレイスから直接ブループリントを起動するには、私たちのプロジェクトがブループリントを起動するために必要な環境の詳細値をすべて持っていることを確認する必要があります。
 
-#. Select **Projects** from the lefthand menu.
+#. 左側のメニューから **プロジェクト** を選択します。
 
-#. Select your *initials*\ -Project.
+#. *あなたのイニシャル* -Projectを選択します。
 
-#. Select the **Environment** tab.
+#. **環境** タブを選択します。
 
-#. Under **Credential**, click :fa:`plus-circle` and enter the following:
+#. **認証情報** で、 :fa:`plus-circle` をクリックして、以下のように入力してください。
 
-   - **Credential Name** - CENTOS
-   - **Username** - centos
-   - **Secret** - Password
-   - **Password** - Nutanix/4u
-   - Click the **running man** icon above Password box to mark this variable as **runtime**.
+   - **認証情報名** - CENTOS
+   - **ユーザ名** - centos
+   - **秘密のタイプ** - Password
+   - **パスワード** - Nutanix/4u
+   - パスワードボックスの上部の **走る人** をクリックし、この変数を **ランタイム** と設定します。
 
    .. figure:: images/32_centos_project_creds.png
        :align: center
        :alt: CentOS Project Credential
 
-       CentOS Project Credential
+       CentOS プロジェクトの認証情報
 
-#. Under **VM Configuration** expand **Linux**, and enter the following:
+#. **VM設定** で **Linux** を展開し、以下のように入力します。
 
-   - select **NUTANIX**
-   - **VM Name** - vm-@@{calm_array_index}@@-@@{calm_time}@@ (Default)
+   - **NUTANIX** を選択します。
+   - **VM名** - vm-@@{calm_array_index}@@-@@{calm_time}@@ (デフォルト値)
    - **vCPUs** - 2
-   - **Cores per vCPU** - 1
-   - **Memory** - 4GiB
+   - **vCPUあたりのコア数** - 1
+   - **メモリー** - 4GiB
    - **Image** - CentOS7.qcow2
-   - **NICs** - Click the **blue plus**, then selecting **Primary** in the dropdown, and selecting the **Dynamic** radio button.
-   - **Check log-in upon create** - checked, and **Credential** - CENTOS (Defined Above)
+   - **NICs** - **青い+マーク** をクリックし、 ドロップダウンで **Primary** を選択し、 **動的** ラジオボタンを選択します。
+   - **作成時ログインのチェック** - チェックし、 **認証情報** にCENTOS(上部で定義したもの)を設定します。
 
    .. figure:: images/33_centos_project_vmconfig.png
        :align: center
        :alt: CentOS Project VM Config
 
-       CentOS Project VM Config
+       CentOS Project VM設定
 
-#. Click **Save**.
+#. **保存** をクリックします。
 
-Launching the Blueprint from the Marketplace
+マーケットプレイスからブループリントを立ち上げる
 ............................................
 
-#. Select |mktmgr-icon| **Marketplace Manager** in the left hand toolbar to view and manage Marketplace Blueprints.
+#. 左側のメニューから |mktmgr-icon| **Marketplace Manager** をクリックします。
 
-#. Enter your *initials* in the search bar, and you should see your blueprint listed.
+#. 検索バーに *あなたのイニシャル* を入力すると、ブループリントが表示されます。
 
-#. Select your *intials*\ **_CentOS_IaaS** blueprint, and click **Launch** from the Marletplace.
+#. **あなたのイニシャル_CentOS_IaaS** ブループリントを選択し、マーケットプレイスから **起動** をクリックします。
 
    .. figure:: images/31_centos_marketplace_launch_bp.png
        :align: center
        :alt: CentOS Marketplace Launce Blueprint
 
-       CentOS Marketplace Launch Blueprint
+       CentOS マーケットプレイスからのブループリントの起動
 
-#. Select your *initials*\ **-Project** from the **Projects** dropdown.
+#. **プロジェクト** ドロップダウンから、*あなたのイニシャル* -Projectを選択してください。
 
-#. Click **Launch**
+#. **起動** をクリックします。
 
-#. Entrer the Following info, and click **Create**.
+#. 以下の情報を入力し、 **作成** ボタンをクリックします。
 
-   - **Name of the Application** - *initials*\ -CentOS-IaaS-2
+   - **アプリケーション名** - *あなたのイニシャル* -CentOS-IaaS-2
    - **vm_password** - Nutanix/4u
 
-#. Monitor the provisioning of the Blueprint until complete.
+#. ブループリントのプロビジョニングを完了するまで監視します。
 
-Takeaways
+終わりに
 +++++++++
 
-What are the key things you should know about **Nutanix Calm** and **Single VM Blueprints**?
+**Nutanix Calm** と **単一の仮想マシンのブループリント** について知っておくべき重要なことは何ですか？
 
-- Nutanix Calm provides application and infrastructure automation natively within Prism, turning complex, week long ticketing processes, into one-click self service provisioning.
+- Nutanix Calmは、アプリケーションとインフラストラクチャの自動化をPrism内でネイティブに提供し、複雑で1週間にも及ぶチケッティングプロセスをワンクリックのセルフサービスプロビジョニングに変えます。
 
-- While Multi VM blueprints enable the provisioning and lifecycle management of complex, multi-tiered applications, Single VM blueprints allows IT to provide Infrastructure-as-a-Service for their end users.
+- 複数の仮想マシンのブループリントが複雑な多階層アプリケーションのプロビジョニングとライフサイクル管理を可能にするのに対し、単一の仮想マシンのブループリントは、IT部門がエンドユーザにInfrastructure-as-a-Serviceを提供することを可能にします。
 
-- Common day 2 operations, like snapshotting, restoring, cloning, and updating the infrastructure can all be done by end users directly within Calm.
+- スナップショット、リストア、クローニング、インフラストラクチャの更新など、一般的な運用上の操作はすべて、エンドユーザがCalm内で直接行うことができます。
 
 .. |proj-icon| image:: ../images/projects_icon.png
 .. |mktmgr-icon| image:: ../images/marketplacemanager_icon.png
