@@ -262,195 +262,192 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
    - **Username** - Administrator
    - **Password** - Nutanix/4u
 
-#. To view the current memory on Windows, open a **Command Prompt**, and run **systeminfo | findstr Memory**.  Take note of the current memory allocated to your VM.
+#. Windows上の現在のメモリを表示するには、 **Command Prompt**を開き 、 **systeminfo | findstr Memory** を実行します。VMに割り当てられている現在のメモリをメモしておきます。
 
    .. figure:: images/23_windows_memory_before.png
        :align: center
        :alt: Windows Memory - Before Update
 
-       Windows Memory - Before Update
+       Windows メモリ - 更新前
 
-#. Navigate back to the application page of Calm, and click the **Update** button in the upper right.  On the page that appears, increase the **Memory (GiB)** field by 2 GiB (For Windows, 8 GiB).
+#. Calmのアプリケーションページに戻り、右上の **更新** ボタンをクリックします。表示されたページで、 **メモリ(GiB)** フィールドを2GiB(Windowsの場合は8GiBと入力します。)増やします。
 
-#. Click the blue **Update** button in the lower left.
+#. 左下の青い **更新** ボタンをクリックします。
 
-#. Validate that the memory field has been increased by 2 GiB, and click **Confirm**.
+#. メモリフィールドが2GiB増加したことを確認し、 **確認** をクリックします。
 
    .. figure:: images/25_windows_confirm.png
        :align: center
        :alt: Windows Memory - Confirm Change
 
-       Windows Memory - Confirm Change
+       Windows メモリ - 変更の確認
 
-#. In the **Audit** tab of Calm, wait for the **App Update** action to complete.
+#. Calmの **監査** タブで、 **アプリの更新** アクションが完了するのを待ちます。
 
-#. Back in the **VM Console**, run the same command from earlier to view the updated memory, and note that it has increased by 2 GiB.
+#. **仮想マシンのコンソール** に戻って、先ほどと同じコマンドを実行して、更新されたメモリを表示し、2GiB増加していることに注意してください。
 
    .. figure:: images/27_windows_memory_after.png
        :align: center
        :alt: Windows Memory - After Update
 
-       Windows Memory - After Update
+       Windows メモリ - 更新後
 
-   .. note::
+   仮想マシンの更新で何か問題が発生した場合は、 **リカバリーポイント** タブに移動し、先ほど取得した **before-update** スナップショットの **リストア** をクリックし、ポップアップで **確認** をクリックします。
 
-      If anything went wrong with the VM Update, navigate to the **Recovery Points** tab, click **Restore** on the **before-update** snapshot we took earlier, and click **Confirm** on the pop-up.
 
-Adding your Blueprints to the Marketplace
+ブループリントをマーケットプレイスに追加する
 +++++++++++++++++++++++++++++++++++++++++
 
-Now that we know we have a good blueprint, lets publish it to he Marketplace.
+ここではブループリントをマーケットプレイスに公開します。
 
-Publishing the Blueprint
+ブループリントの公開
 ........................
 
-#. Select |blueprints| **Blueprints** in the left hand toolbar to view and manage Calm blueprints.
+#. 左側のツールバーで、 |blueprints| **ブループリント** をクリックし、Calmのブループリントを表示します。
 
-#. Click your *Initials*\ **-Windows-IaaS** blueprint.
+#. **あなたのイニシャル-Windows-IaaS**のブループリントをクリックしてください。
 
-#. Click the **Publish** button, and enter the following:
+#. **公開** ボタンをクリックして、以下のように入力します。
 
-   - **Name** - *initials*\ _Windows_IaaS
-   - **Publish with secrets** - off
-   - **Initial Version** - 1.0.0
-   - **Description** - (Optional)
+   - **名前** - あなたのイニシャル_Windows_IaaS
+   - **シークレットとともにパブリッシュ** - オフ
+   - **初期バージョン** - 1.0.0
+   - **説明** - 任意
 
    .. figure:: images/28_windows_publish_bp.png
        :align: center
        :alt: Windows Publish Blueprint
 
-       Windows Publish Blueprint
+       Windows ブループリントの公開
 
-#. Click **Submit for Approval**.
+#. **承認用に送信** をクリックします。
 
    .. note::
 
-     Publish with Secrets: By default, the secret values from the blueprint are not preserved while publishing. As a result, during the launch of the marketplace item, the secret values will either be patched from the environment or the user will have to fill them in.
+     シークレットとともにパブリッシュ: デフォルトでは、ブループリントの認証情報は公開されたブループリントにおいて保存されません。その結果、マーケットプレイスアイテムの起動時に、認証情報は環境から入力されるか、ユーザーが埋めなければなりません。この動作を望まず、認証情報をそのまま保存したい場合は、このフラグを設定してください。
 
-     Set this flag if you do not want this behaviour and you would rather the secret values are preserved as is. *Credential passwords/keys and secret variables are considered secret values. While publishing with secrets, these values will be encrypted.*
-
-Approving Blueprints
+ブループリントの承認
 ....................
 
-#. Select |mktmgr-icon| **Marketplace Manager** in the left hand toolbar to view and manage Marketplace Blueprints.
+#. 左側のツールバーで、 |mktmgr-icon| **Marketplace Manager** をクリックし、マーケットプレイスのアイテムを表示します。
 
-#. You will see the list of Marketplace blueprints, and their versions listesd. Select **Approval Pending** at the top of the page.
+#. マーケットプレイスのブループリントとそのバージョンのリストが表示されます。ページ上部の **承認を保留** を選択します。
 
-#. Click your *intials*\ **_CentOS_IaaS** blueprint.
+#. *あなたのイニシャル* _Windows_IaaS ブループリントを表示します。
 
-#. Review the available actions:
+#. 利用可能なアクションを確認します。
 
-   - **Approve** - Approves the Blueprint for publication to the Marketplace.
-   - **Reject** - Prevents  Blueprint from being launched or published in the Marketplace. The Blueprint will need to be submitted again after being rejected before it can be published.
-   - **Delete** - Deletes the blueprint submission to the Marketplace.
-   - **Launch** - Launches the Blueprint as an application, similar to launching from the Blueprint Editor.
+   - **承認** - マーケットプレイスに公開するためのブループリントを承認します。
+   - **拒否** - ブループリントがマーケットプレイスで公開されないようにします。ブループリントを公開するには、拒否された後に再度提出する必要があります。
+   - **削除** - マーケットプレイスへのブループリントの提出を削除します。
+   - **起動** - ブループリントエディタから起動するのと同様に、アプリケーションとしてブループリントを起動します。
 
-#. Review the available selections:
+#. 利用可能な選択肢を確認します。
 
-   - **Category** - Allows you to update the Category for the new Marletplace blueprint.
-   - **Projects Shared With** - Allows you to make the Marketplace blueprint only available to a certain project.
+   - **カテゴリ** - 新しいマーケットプレイスのブループリントのカテゴリを更新することができます。
+   - **共有するプロジェクト** - マーケットプレイスのブループリントを特定のプロジェクトでのみ利用できるようにします。
 
-#. Click **Approve**.
+#. **承認** をクリックします。
 
    .. figure:: images/29_windows_approve_bp.png
        :align: center
        :alt: Windows Approve Blueprint
 
-       Windows Approve Blueprint
+       Windows ブループリントの承認
 
-#. Select **Marketplace Blueprints** at the top of the page, and enter your *initials* in the search bar. You should see your blueprint listed now, with a Status of **Accepted**.
+#. ページの上部にある **マーケットプレイスブループリント** を選択し、検索バーにあなたの *イニシャル* を入力してください。あなたのブループリントが **認められた** のステータスで表示されているはずです。
 
    .. figure:: images/30_windows_marketplace_bp.png
        :align: center
        :alt: Windows Marketplace Blueprint
 
-       Windows Marketplace Blueprint
+       Windows マーケットプレイスブループリント
 
-Launching your Blueprint from the Marketplace
+マーケットプレイスからブループリントを起動する
 +++++++++++++++++++++++++++++++++++++++++++++
 
-Now that we have published our blueprint to the Marketplace, we need to make an update to our *initials*\ -Project.
+マーケットプレイスからブループリントを起動するにあたり、 *あなたのイニシャル* -プロジェクトに更新を行う必要があります。
 
-Configuring Project Environment
+プロジェクト環境値の設定
 ...............................
 
-#. To launch a Blueprint directly from the Marketplace, we need to ensure our Project has all of the requisite environment details to satisfy the Blueprint.
+#. マーケットプレイスから直接ブループリントを起動するには、私たちのプロジェクトがブループリントを起動するために必要な環境の詳細値をすべて持っていることを確認する必要があります。
 
-#. Select **Projects** from the lefthand menu.
+#. 左側のメニューから **プロジェクト** を選択します。
 
-#. Select your *initials*\ -Project.
+#. *あなたのイニシャル* -Projectを選択します。
 
-#. Select the **Environment** tab.
+#. **環境** タブを選択します。
 
-#. Under **Credential**, click :fa:`plus-circle` and enter the following:
+#. **認証情報** で、 :fa:`plus-circle` をクリックして、以下のように入力してください。
 
-   - **Credential Name** - Administrator
-   - **Username** - Administrator
-   - **Secret** - Password
-   - **Password** - Nutanix/4u
-   - Click the **running man** icon above Password box to mark this variable as **runtime**.
+   - **認証情報名** - Administrator
+   - **ユーザ名** - Administrator
+   - **秘密のタイプ** - Password
+   - **パスワード** - Nutanix/4u
+   - パスワードボックスの上部の **走る人** をクリックし、この変数を **ランタイム** と設定します。
 
    .. figure:: images/32_windows_project_creds.png
        :align: center
        :alt: Windows Project Credential
 
-       Windows Project Credential
+       Windows プロジェクトの認証情報
 
-#. Under **VM Configuration** expand **Windows**, and enter the following:
+#. **VM設定** で **Windows** を展開し、以下のように入力します。
 
    - select **NUTANIX**
-   - **VM Name** - vm-@@{calm_array_index}@@-@@{calm_time}@@ (Default)
+   - **VM名** - vm-@@{calm_array_index}@@-@@{calm_time}@@ (デフォルト値)
    - **vCPUs** - 4
-   - **Cores per vCPU** - 1
-   - **Memory** - 6GiB
+   - **vCPUあたりのコア数** - 1
+   - **メモリー** - 6GiB
    - **Image** - Windows2016.qcow2
-   - **NICs** - Click the **blue plus**, then selecting **Primary** in the dropdown, and selecting the **Dynamic** radio button.
-   - **Check log-in upon create** - checked, and **Credential** - Administrator (Defined Above)
+   - **NICs** - **青い+マーク** をクリックし、 ドロップダウンで **Primary** を選択し、 **動的** ラジオボタンを選択します。
+   - **作成時ログインのチェック** - チェックし、 **認証情報** にAdministrator(上部で定義したもの)を設定します。
 
    .. figure:: images/33_windows_project_vmconfig.png
        :align: center
        :alt: Windows Project VM Config
 
-       Windows Project VM Config
+       Windows Project VM設定
 
-#. Click **Save**.
+#. **保存** をクリックします。
 
-Launching the Blueprint from the Marketplace
+マーケットプレイスからブループリントを立ち上げる
 ............................................
 
-#. Select |mktmgr-icon| **Marketplace Manager** in the left hand toolbar to view and manage Marketplace Blueprints.
+#. 左側のメニューから |mktmgr-icon| **Marketplace Manager** をクリックします。
 
-#. Enter your *initials* in the search bar, and you should see your blueprint listed.
+#. 検索バーに *あなたのイニシャル* を入力すると、ブループリントが表示されます。
 
-#. Select your *intials*\ **_Windows_IaaS** blueprint, and click **Launch** from the Marletplace.
+#. **あなたのイニシャル_Windows_IaaS** ブループリントを選択し、マーケットプレイスから **起動** をクリックします。
 
    .. figure:: images/31_windows_marketplace_launch_bp.png
        :align: center
        :alt: Windows Marketplace Launce Blueprint
 
-       Windows Marketplace Launch Blueprint
+       Windows マーケットプレイスからのブループリントの起動
 
-#. Select your *initials*\ **-Project** from the **Projects** dropdown.
+#. **プロジェクト** ドロップダウンから、*あなたのイニシャル* -Projectを選択してください。
 
-#. Click **Launch**
+#. **起動** をクリックします。
 
-#. Entrer the Following info, and click **Create**.
+#. 以下の情報を入力し、 **作成** ボタンをクリックします。
 
-   - **Name of the Application** - *initials*\ -Windows-IaaS-2
+   - **アプリケーション名** - *あなたのイニシャル* -Windows-IaaS-2
    - **vm_password** - Nutanix/4u
 
-#. Monitor the provisioning of the Blueprint until complete.
+#. ブループリントのプロビジョニングを完了するまで監視します。
 
-Takeaways
+終わりに
 +++++++++
 
-What are the key things you should know about **Nutanix Calm** and **Single VM Blueprints**?
+**Nutanix Calm** と **単一の仮想マシンのブループリント** について知っておくべき重要なことは何ですか？
 
-- Nutanix Calm provides application and infrastructure automation natively within Prism, turning complex, week long ticketing processes, into one-click self service provisioning.
+- Nutanix Calmは、アプリケーションとインフラストラクチャの自動化をPrism内でネイティブに提供し、複雑で1週間にも及ぶチケッティングプロセスをワンクリックのセルフサービスプロビジョニングに変えます。
 
-- While Multi VM blueprints enable the provisioning and lifecycle management of complex, multi-tiered applications, Single VM blueprints allows IT to provide Infrastructure-as-a-Service for their end users.
+- 複数の仮想マシンのブループリントが複雑な多階層アプリケーションのプロビジョニングとライフサイクル管理を可能にするのに対し、単一の仮想マシンのブループリントは、IT部門がエンドユーザにInfrastructure-as-a-Serviceを提供することを可能にします。
 
-- Common day 2 operations, like snapshotting, restoring, cloning, and updating the infrastructure can all be done by end users directly within Calm.
+- スナップショット、リストア、クローニング、インフラストラクチャの更新など、一般的な運用上の操作はすべて、エンドユーザがCalm内で直接行うことができます。
 
 .. |proj-icon| image:: ../images/projects_icon.png
 .. |mktmgr-icon| image:: ../images/marketplacemanager_icon.png
