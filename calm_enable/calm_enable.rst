@@ -1,70 +1,70 @@
 .. _calm_enable:
 
 ------------
-Calm: Enable
+Calmの有効化
 ------------
 
-Overview
+概要
 ++++++++
 
 .. note::
 
-  Review :ref:`what_is_calm` before proceeding with the lab to familiarize yourself with the UI and common terminology used in Nutanix Calm.
+  ラボに進む前に、Nutanix Calmで使用されているUIと一般的な用語に慣れるために、 :ref:`what_is_calm` を事前確認してください。
 
-  Estimated time to complete: **10 MINUTES**
+  完了までの概算時間: **10分**
 
-In this exercise you will enable Nutanix Calm.
+この演習では、Nutanix Calmを有効化します。
 
-Enabling App Management
+アプリケーション管理を有効にする
 +++++++++++++++++++++++
 
-Calm is built into Prism Central and requires no additional appliances or consoles to manage. Before you can begin managing apps in your environment with Calm, the service must be enabled.
+CalmはPrism Centralに組み込まれているため、管理するための追加のアプライアンスやコンソールは必要ありません。Calmを使用して環境内のアプリケーションの管理を開始するには、サービスを有効にする必要があります。
 
 .. note::
 
-  Calm can only be enabled once per Prism Central instance. If **Enable app management** displays a green check mark next to it, that means Calm has already been enabled for the Prism Central instance being used. Proceed to :ref:`calm_projects`.
+  Calm は、Prism Centralインスタンスごとに1回のみ有効にすることができます。 もし **アプリ管理の有効化** が緑色のチェックマークを表示している場合は、使用しているPrism CentralインスタンスでCalmがすでに有効になっていることを意味します。 **そうであれば、本演習は不要です。**
 
-#. In **Prism Central**, click the **?** drop down menu, expand **New in Prism Central** and select **Enable app management**.
+#. **Prism Central** で、 **?** ドロップダウンメニューをクリックし、 **Prism Centralの新規** を展開し、 **アプリ管理を有効にする** を選択します。
 
-#. Click **Enable**.
+#. **有効化** をクリックします。
 
-.. figure:: images/5.10/enable1.png
+   .. figure:: images/5.10/enable1.png
 
-#. Select **Enable App Management** and click **Save**.
+#. **アプリ管理を有効にする** を選択し、 **保存** をクリックします。
 
-.. note:: Nutanix Calm is a separately licensed product that can be used with Acropolis Starter, Pro, or Ultimate editions. 
+   .. note:: Nutanix Calmは、Acropolis Starter、Pro、またはUltimateエディションで使用できる個別ライセンス製品です。
 
-.. figure:: images/5.10/enable2.png
+   .. figure:: images/5.10/enable2.png
 
-#. You should get verification that Calm is enabling, which will take 5 to 10 minutes.
+#. Calmが有効になっているかどうかの検証を受ける必要がありますが、これには5分から10分ほどかかります。
 
-.. figure:: images/5.10/enable3.png
+   .. figure:: images/5.10/enable3.png
 
-Adding Active Directory
+Active Directoryの追加
 +++++++++++++++++++++++
 
-While we're waiting for Calm to enable, we'll add an Active Directory server.  While this isn't required for basic Calm use, it is required to do any Role Based Access Control, so it's a good idea to get set up.
+Calmが有効になるのを待っている間に、Active Directoryサーバーを追加します。 これは基本的なCarmの利用には必要ないのですが、ロールベースのアクセス制御を行う際には必要になるので、設定しておくと良いでしょう。
 
-#. Click the **Gear Icon** and then **Authentication**.
+#. **ギアアイコン** をクリックし、 **認証** のメニューに進みます。
 
-.. figure:: images/5.10/enable4.png
+   .. figure:: images/5.10/enable4.png
 
-#. In the pop up, click **New Directory**.
+#. ポップアップメニューで **新規ディレクトリ** をクリックします。
 
-.. figure:: images/5.10/enable5.png
+   .. figure:: images/5.10/enable5.png
 
-#. Fill out the following fields and click **Save**:
+#. 次のフィールドを記載し、 **保存** をクリックします。
 
-- **Directory Type** - Active Directory
-- **Name** - NTNXLAB
-- **Domain** - ntnxlab.local
-- **Directory URL** - ldaps://*<DC-VM-IP>*
-- **Search Type** - Non Recursive
-- **Username** - Administrator@ntnxlab.local
-- **Password** - nutanix/4u
+   - **ディレクトリタイプ** - Active Directory
+   - **名前** - NTNXLAB
+   - **ドメイン** - ntnxlab.local
+   - **ディレクトリURL** - ldaps://*<DC-VM-IP>*
+   - **検索タイプ** - Non Recursive
+   - **サービスアカウントユーザ名** - Administrator@ntnxlab.local
+   - **サービスアカウントパスワード** - nutanix/4u
 
-.. figure:: images/5.10/enable6.png
+   .. figure:: images/5.10/enable6.png
 
-#. Refresh the browser and select **Calm** from the navigation bar.  If Calm is still enabling, wait another minute, and try again.
+#. ブラウザを更新し、ナビゲーションバーから **Calm** を選択します。Calmがまだ有効になっている場合は、もう1分待ってからもう一度試してみてください。
 
-.. figure:: images/5.10/enable7.png
+   .. figure:: images/calm3/overview.png
