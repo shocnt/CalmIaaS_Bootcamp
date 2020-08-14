@@ -7,19 +7,19 @@ Calm: DSLのクイックスタート
 はじめに
 ++++++++
 
-DSLの演習をすぐに始められるように [DevWorkStation.json](https://raw.githubusercontent.com/bmp-ntnx/QuickStartCalmDSL/master/DevWorkstation.json) のブループリントを用意しました。同梱されているDevWorkstation.jsonは、必要なツールをすべて含んだ CentOS VMを構築します。この設計図はCalmから直接起動することができますが、セルフサービス用のCalm Marketplaceに公開することをお勧めします。 また、アイコンとして使用できる[software-developer.png](https://github.com/bmp-ntnx/QuickStartCalmDSL/blob/master/software-developer.png)も付属しています。
+DSLの演習をすぐに始められるように [DevWorkStation.json](https://raw.githubusercontent.com/bmp-ntnx/QuickStartCalmDSL/master/DevWorkstation.json) のブループリントを用意しました。同梱されているDevWorkstation.jsonは、必要なツールをすべて含んだ CentOS VMを構築します。この設計図はCalmから直接起動することができますが、セルフサービス用のCalm Marketplaceに公開することをお勧めします。 また、アイコンとして使用できる[software-developer.png](https://github.com/bmp-ntnx/QuickStartCalmDSL/blob/master/software-developer.pngも付属しています。
 
 ## CalmのマーケットプレイスからDevWorkstationを起動
 
-![Alt text](images/MPDevWorkstation.png)
+.. figure:: images/MPDevWorkstation.png
 
 -   **重要: 認証情報タブを選択し、希望するユーザー/パスを入力します。**
 
-![Alt text](images/Creds.png)
+.. figure:: images/Creds.png
 
 -   アプリケーション名 "DevWorkstation-あなたのイニシャル" を入力し、必要事項を記入してください。
 
-![Alt text](images/DevLaunch.png)
+.. figure:: images/DevLaunch.png
 
 -   **作成** をクリックします。
 
@@ -29,7 +29,7 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
 -   DevWorkstationのIPアドレスは、アプリケーションの概要の下に記載されています。 SSHユーザー/パスは、認証情報タブで設定したものです。
 
-![Alt text](images/IPaddress.png)
+.. figure:: images/IPaddress.png
 
 ## 仮想環境を起動し、Prism Centralに接続します。
 
@@ -42,17 +42,17 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 -   現在の設定を確認するには ```calm show config``` を実行してください。
 
 
-![Alt text](images/Config.png)
+.. figure:: images/Config.png
 
 ## Calmのブループリントを一覧で表示する
 
 -   ```calm get bps``` を実行すると、Calm内のすべてのブループリントとUUID、説明、アプリケーション数、プロジェクト、状態が表示されます。
 
-![Alt text](images/getbps.png)
+.. figure:: images/getbps.png
 
 -   ```calm get bps -q``` を実行すると、BP名のみを含む出力を表示することができます。
 
-![Alt text](images/calmgetbpsq.png)
+.. figure:: images/calmgetbpsq.png
 
 ## Pythonベースのブループリントを見直して修正を加える
 
@@ -64,7 +64,7 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
 -   "scripts"ディレクトリがあります。ここにはbash/powershell/pythonスクリプトが保存されていて、ブループリントの中で使用されます。
 
-![Alt text](images/hellols.png)
+.. figure:: images/hellols.png
 
 -   ```vi blueprint.py``` を実行します。
 
@@ -84,13 +84,13 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
     -   vCPUを2から4に増やします。 (行 154)
 
-![Alt text](images/vcpu.png)
+.. figure:: images/vcpu.png
 
 -   マクロを使用して一意のVM名を追加する (行 185)
 
     -   ```provider_spec.name = "<あなたのイニシャル>-@@{calm_unique}@@"```
 
-![Alt text](images/vmname.png)
+.. figure:: images/vmname.png
 
 -   Pythonによるブループリントファイルを保存して閉じるために、```:wq`````を書き込んで終了します。
 
@@ -100,13 +100,13 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
 -   現在のインストールスクリプトの内容を見るには、 ```cat pkg_install_task.sh``` を実行してください。このスクリプトは何をしているのでしょうか？
 
-![Alt text](images/more1.png)
+.. figure:: images/more1.png
 
 -   既存のインストールスクリプトを置き換えるために、 ```curl -Sks https://raw.githubusercontent.com/bmp-ntnx/prep/master/nginx > pkg_install_task.sh``` を実行してください。
 
 -   変更されたスクリプトを見るには、 ```cat pkg_install_task.sh``` を実行してください。今度はスクリプトは何をするようになったのでしょうか？
 
-![Alt text](images/more2.png)
+.. figure:: images/more2.png
 
 ## 変更したblueprint.pyをCalmに送信
 
@@ -116,13 +116,13 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
     -   これは.pyファイルをjsonに変換してCalmにプッシュします。
 
-![Alt text](images/syncbp.png)
+.. figure:: images/syncbp.png
 
 -   **任意** ```calm compile bp -f blueprint.py``` を実行すると、DSLからjson形式のPythonブループリントが表示されます。
 
 -   新しいブループリントを確認するには、 ```calm get bps -q | grep FromDSL-<あなたのイニシャル>``` を実行してください。
 
-![Alt text](images/verifygrep.png)
+.. figure:: images/verifygrep.png
 
 ## ブループリントを起動
 
@@ -134,21 +134,21 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
 -   ```calm launch bp FromDSL-<Initials> --app_name AppFromDSL-<Initials> -i``` を実行します。
 
-![Alt text](images/launchbp.png)
+.. figure:: images/launchbp.png
 
 -   ```calm describe app AppFromDSL-<Initials>``` を実行し、アプリケーションの詳細を確認します。
 
 -   アプリのステータスが **実行中** になったら、Calm DSLからnginxサーバーをデプロイします。
 
-![Alt text](images/describe.png)
+.. figure:: images/describe.png
 
 -   ここでVM/アプリケーションのIPアドレスを取得する必要があります。 これを取得するために、 ```calm describe app AppFromDSL-<Initials> --out json | jq '.status.resources.deployment_list[].substrate_configuration.element_list[].address'``` を実行して、jqを使ってアプリケーションのjson出力から "IPアドレス"を取得します。
 
-![Alt text](images/jqout.png)
+.. figure:: images/jqout.png
 
 -   ウェブブラウザでIPアドレスを入力すると、nginxによる **"Welcome to DSL "** のウェブページが表示されます。
 
-![Alt text](images/welcome2.png)
+.. figure:: images/welcome2.png
 
 ## Prism Centralにログインして確認する
 
@@ -182,7 +182,7 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
     - ```git remote -v``` : あなたのリモートレポジトリの詳細を確認します。
 
-    ![Alt text](images/gitsetup.png)
+    .. figure:: images/gitsetup.png
 
     - ```git status``` : gitにより管理されているコードセットを確認します。
 
@@ -190,7 +190,7 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
     - ```git status``` : ファイルを追加した後の変更点を確認します。
 
-    ![Alt text](images/gitstatus.png)
+    .. figure:: images/gitstatus.png
 
     - 上の出力を見ると、いくつかの鍵があることがわかりますので、公開レポにプッシュされているので、それらを削除しましょう。
 
@@ -198,15 +198,15 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
     - ```git status``` : コードセットを確認します。
 
-    ![Alt text](images/gitremove.png)
+    .. figure:: images/gitremove.png
 
     - ```git commit -m "My DSL blueprints"``` : コードセットをコミットします。
 
-    ![Alt text](images/gitcommit.png)
+    .. figure:: images/gitcommit.png
 
      - ```git push -u origin master``` :  Githubのリモートレポジトリに送信します。githubへのキーアクセスを設定しない限り、ユーザー/パスの入力を求められます。
 
-    ![Alt text](images/gitpush.png)
+    .. figure:: images/gitpush.png
 
      -  Githubのレポをチェックして、ファイルがプッシュされたことを確認してください。 あなたのブループリントはCalmとGithubの両方に存在ます。以下を実行し、ブループリント中のメモリを8に増やしてみます。
 
@@ -220,5 +220,5 @@ DSLの演習をすぐに始められるように [DevWorkStation.json](https://r
 
     - githubに戻ると、blueprint.pyの "history"の下に新しいバージョンがあり、メモリが変更されています。
 
-    ![Alt text](images/diff.png)
+    .. figure:: images/diff.png
 
