@@ -368,17 +368,17 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
 
    .. figure:: images/publish.png
        :align: center
-       :alt: Windows Marketplace Blueprint
+       :alt: CentOS Marketplace Blueprint
 
-       Windows マーケットプレイスブループリントの公開
+       CentOS マーケットプレイスブループリントの公開
        
 #. あなたのブループリントが **公開された** のステータスで表示されているはずです。
 
    .. figure:: images/published.png
        :align: center
-       :alt: Windows Marketplace Blueprint
+       :alt: CentOS Marketplace Blueprint
 
-       Windows マーケットプレイスブループリント
+       CentOS マーケットプレイスブループリント
 
 #. 左側のツールバーで、 **Marketplace** をクリックし、マーケットプレイスに公開されたアイテムを表示します。
 
@@ -446,9 +446,9 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
 
    .. figure:: images/mktlaunch.png
        :align: center
-       :alt: Windows Marketplace Launce Blueprint
+       :alt: CentOS Marketplace Launce Blueprint
 
-       Windows マーケットプレイスからのブループリントの起動
+       CentOS マーケットプレイスからのブループリントの起動
 
 #. *あなたのイニシャル*-Projectのプロジェクトを選択し、 **起動** をクリックします。
 
