@@ -376,7 +376,7 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
 
 #. **公開** をクリックし、マーケットプレイスにブループリントを公開します。
 
-   .. figure:: images/XXXXXX.png
+   .. figure:: images/publish.png
        :align: center
        :alt: Windows Marketplace Blueprint
 
@@ -384,7 +384,7 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
        
 #. あなたのブループリントが **公開された** のステータスで表示されているはずです。
 
-   .. figure:: images/XXXXXX.png
+   .. figure:: images/published.png
        :align: center
        :alt: Windows Marketplace Blueprint
 
@@ -392,7 +392,7 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
 
 #. 左側のツールバーで、 **Marketplace** をクリックし、マーケットプレイスに公開されたアイテムを表示します。
 
-   .. figure:: images/XXXXXX.png
+   .. figure:: images/mktitem.png
        :align: center
        :alt: Marketplace
 
@@ -454,7 +454,7 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
 
 #. **あなたのイニシャル_Windows_IaaS** ブループリントを選択し、マーケットプレイスから **起動** をクリックします。
 
-   .. figure:: images/XXXX.png
+   .. figure:: images/mktlaunch.png
        :align: center
        :alt: Windows Marketplace Launce Blueprint
 
