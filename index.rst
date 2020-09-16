@@ -31,8 +31,8 @@
   :name: _additional_calm_labs
   :hidden:
 
-  calm_dsl/calm_dsl
   calm_marketplace/calm_marketplace
+  calm_dsl/calm_dsl
 
 .. toctree::
   :maxdepth: 2
