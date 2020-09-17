@@ -202,7 +202,7 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 
 私たちのブループリントを git にプッシュしてみましょう。 始める前にgithub.comのアカウントが必要です。
 
-#. git にログインして新しいレポジトリ、"dsl-blueeprints"を作成します。
+#. git にログインして新しいレポジトリ、"dsl-blueprints"を作成します。
 
 #. HelloBlueprintディレクトリから以下を実行します。
 
