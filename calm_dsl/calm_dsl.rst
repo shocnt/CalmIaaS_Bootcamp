@@ -46,7 +46,7 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 
        DevWorkstation 変数
 
-#. 画面左側のペインでサービス > DSLが設定された状態で、右側の仮想マシンを設定します。NETWORK ADAPTORS(NIC)の項目で
+#. 画面左側のペインでサービス > DSLが設定された状態で、右側の仮想マシンを設定します。NETWORK ADAPTORS(NIC)の項目でNIC1の設定を行います。
 
    - **NIC1** - Primary
 
