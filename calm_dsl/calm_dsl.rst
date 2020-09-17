@@ -60,6 +60,7 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 
 #. 認証情報名localにおいてパスワードを入力します。
 
+   - **ユーザ名** - admin (デフォルト)
    - **パスワード** - 好みのパスワード
 
    .. figure:: images/cred.png
