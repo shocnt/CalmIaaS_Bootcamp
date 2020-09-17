@@ -32,7 +32,7 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
 
      アイコンにマウスを当てるとメニューがテキストで表示されます。
 
-#. `こちら <https://shuchida.s3-ap-northeast-1.amazonaws.com/Single-Windows2016-AHV.json>`_ からテンプレートとなるブループリントをローカルマシンにダウンロードします。(ブラウザの機能においてファイルを別名ダウンロードしてください。)
+#. `こちら <https://github.com/shocnt/CalmIaaS_Bootcamp/raw/master/calm_windows_track/calm_iaas_windows/Single-Windows2016-AHV.json>`_ からテンプレートとなるブループリントをローカルマシンにダウンロードします。(ブラウザの機能においてファイルを別名ダウンロードしてください。)
 
 #. **ブループリントのアップロード** をクリックし、ダウンロードしたjsonファイル(Single-Windows2016-AHV.json)を選択します。
 
