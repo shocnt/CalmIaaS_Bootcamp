@@ -31,7 +31,6 @@
   :name: _additional_calm_labs
   :hidden:
 
-  calm_marketplace/calm_marketplace
   calm_dsl/calm_dsl
 
 .. toctree::
@@ -76,7 +75,6 @@ Nutanix Calm IaaS Bootcampへようこそ!
 
 - 追加の演習
     - Calm: DSL
-    - Calm: マーケットプレイス
 
 - 任意の演習
     - Calm: 有効化
