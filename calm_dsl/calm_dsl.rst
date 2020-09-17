@@ -9,7 +9,7 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 はじめに
 ++++++++
 
-`Calm DSL <https://github.com/nutanix/calm-dsl>`_はNutanix CalmにおいてInfrastructure as Code(IaC)を実現するためのツールです。calm CLIとpythonによるブループリントからなり、git等のSCMツールと併せて利用することでブループリント開発における差分情報の追跡、チーム開発が可能となります。またJenkins等のCI/CDツールと組み合わせることでブループリント開発における継続的インテグレーション/継続的デプロイメントのプラクティス実現を可能とします。Calm DSLによる開発環境はPythonのvenvを利用する方法、Dockerコンテナを利用する方法の2通りの方法で得ることが出来ますが、本演習ではDockerコンテナを利用してCalm DSLによる開発環境を構築し、実際にCalm DSLによりNutabnixクラスタ上に仮想マシンを起動します。
+`Calm DSL <https://github.com/nutanix/calm-dsl>`_はNutanix CalmにおいてInfrastructure as Code(IaC)を実現するためのツールです。calm CLIとpythonによるブループリントからなり、git等のSCMツールと併せて利用することでブループリント開発における差分情報の追跡、チーム開発が可能となります。またJenkins等のCI/CDツールと組み合わせることでブループリント開発における継続的インテグレーション/継続的デプロイメントのプラクティス実現を可能とします。Calm DSLによる開発環境はPythonのvenvを利用する方法、Dockerコンテナを利用する方法の2通りの方法で得ることが出来ますが、本演習では前者のPythonのvenvを利用したCalm DSLによる開発環境を構築し、実際にCalm DSLによりNutabnixクラスタ上に仮想マシンを起動します。
 
 #. `こちら <https://shuchida.s3-ap-northeast-1.amazonaws.com/DevWorkstation.json>`_からとなるブループリントをローカルマシンにダウンロードします。(ブラウザの機能においてファイルを別名ダウンロードしてください。)
 
@@ -82,207 +82,165 @@ Calm: DSL(Domain Specific Language)のクイックスタート
    
 #. 待機中に **監査** メニュー内のログを確認して、パッケージがデプロイされているのを確認してください。ブループリントは、Calm DSLと一緒にいくつかのユーティリティを自動的にインストールします。
 
+#. アプリケーションが **実行中** になったら、DevWorkstationにSSHでアクセスします。
 
+#. DevWorkstationのIPアドレスは、アプリケーションの概要の下に記載されています。 SSHユーザー/パスは、認証情報タブで設定したものです。
 
+   .. figure:: images/IPaddress.png
 
+#. Pythonのvenvを起動し、Prism Centralに接続します。
 
+#. ユーザのホームディレクトリから ``cd calm-dsl`` を実行し、ディレクトリに移動します。
 
+#. ``source venv/bin/activate`` のコマンドを実行して仮想環境に切り替えます。これでCalm DSLの仮想環境が有効になります。
 
+#. 現在の設定を確認するには ``calm show config`` を実行してください。
 
-## アプリケーションが **実行中** になったら、DevWorkstationにSSHでアクセスします。
+   .. figure:: images/Config.png
 
--   DevWorkstationのIPアドレスは、アプリケーションの概要の下に記載されています。 SSHユーザー/パスは、認証情報タブで設定したものです。
+#. ``calm get bps`` を実行すると、Calm内のすべてのブループリントとUUID、説明、アプリケーション数、プロジェクト、状態が表示されます。
 
-.. figure:: images/IPaddress.png
+   .. figure:: images/getbps.png
 
-## 仮想環境を起動し、Prism Centralに接続します。
+#. ``calm get bps -q`` を実行すると、BP名のみを含む出力を表示することができます。
 
--   ユーザのホームディレクトリから ```cd calm-dsl``` を実行し、ディレクトリに移動します。
+   .. figure:: images/calmgetbpsq.png
 
--   ```source venv/bin/activate``` のコマンドを実行して仮想環境に切り替えます。これでCalm DSLの仮想環境が有効になります。
+#. ``cd HelloBlueprint`` を実行し、ディレクトリに移動して、 ``ls`` を実行してください。
 
--   **オプション:** これはブループリントの起動で既に行われています。一度DevWorkstationにSSHしたら、 ```calm init dsl``` を実行してPrism Centralへの接続を設定します。
+.. note::
+  
+  このディレクトリとその内容はブループリントの起動時に自動的に作成されます。DevWorkstationのブループリント起動の一部として、接続されたCalmインスタンスに設定されたサンプルのブループリントを作成するために ``calm init bp`` を実行しました。
 
--   現在の設定を確認するには ```calm show config``` を実行してください。
+   - **blueprint.py** - Pythonによって書かれたブループリントです。
+   - **scripts** - ディレクトリがあります。ここにはbash/powershell/pythonスクリプトが保存されていて、ブループリントの中で使用されます。
 
+   .. figure:: images/hellols.png
 
-.. figure:: images/Config.png
+#. ``vi blueprint.py`` を実行します。ブループリントを見てみましょう。行に直接スキップするには ``:<行番号>`` と入力してください。
 
-## Calmのブループリントを一覧で表示する
+   -  **認証情報** - 行 54-60
+   -  **OSイメージ** - 行 62-66
+   -  **class HelloPackage(Package)** の下には、scriptsディレクトリのpkg\_install\_task.shスクリプトへの参照があります。 - 行 139
+   -  **VMの基本スペック情報（vCPU/メモリ/ディスク/NIC)** - 行 153-159
+   -  **cloud-initによるゲストのカスタマイズ** - 行 161-171
 
--   ```calm get bps``` を実行すると、Calm内のすべてのブループリントとUUID、説明、アプリケーション数、プロジェクト、状態が表示されます。
+#. blueprint.pyにおいて、vCPUの数を変更します。viエディタで以下を変更して下さい。
 
-.. figure:: images/getbps.png
+   -  vCPUを2から4に増やします。 (行 154)
 
--   ```calm get bps -q``` を実行すると、BP名のみを含む出力を表示することができます。
+   .. figure:: images/vcpu.png
 
-.. figure:: images/calmgetbpsq.png
+   -   マクロを使用してVM名を追加します。(行 185) ``provider_spec.name = "あなたのイニシャル-@@{calm_unique}@@"``を追加して下さい。
 
-## Pythonベースのブループリントを見直して修正を加える
+   .. figure:: images/vmname.png
 
--   ```cd HelloBlueprint``` を実行し、ディレクトリに移動して、 ``ls``` を実行してください。
+   -   Pythonによるブループリントファイルを保存して閉じるために、``:wq`` を書き込んで終了します。
 
-    -   このディレクトリとその内容はブループリントの起動時に自動的に作成されます。DevWorkstationのブループリント起動の一部として、接続されたCalmインスタンスに設定されたサンプルのブループリントを作成するために ```calm init bp``` を実行しました。
+#. pkg\_install\_task.shを修正します。 ``cd scripts`` を実行し、ディレクトリに移動して、 ``ls`` を実行してください。
 
--   "blueprint.py"というファイルがありますが、これはpythonによって書かれたブループリントです。
+   -  blueprint.pyの中で参照されている2つのスクリプトが表示されます。
+   -  現在のインストールスクリプトの内容を見るには、 ``cat pkg_install_task.sh`` を実行してください。このスクリプトは何をしているのでしょうか？
 
--   "scripts"ディレクトリがあります。ここにはbash/powershell/pythonスクリプトが保存されていて、ブループリントの中で使用されます。
+   .. figure:: images/more1.png
 
-.. figure:: images/hellols.png
+#. 既存のインストールスクリプトを置き換えるために、 ``curl -Sks https://raw.githubusercontent.com/bmp-ntnx/prep/master/nginx > pkg_install_task.sh`` を実行してください。
 
--   ```vi blueprint.py``` を実行します。
+   -  変更されたスクリプトを見るには、 ```cat pkg_install_task.sh``` を実行してください。今度はスクリプトは何をするようになったのでしょうか？
 
--   ブループリントを見てみましょう。行に直接スキップするには ```:<行数>``` と入力してください。
+   .. figure:: images/more2.png
 
-    -   認証情報 (行 54-60)
+#. 変更したblueprint.pyをCalmに送信します。
 
-    -   OSイメージ (行 62-66)
+   -   ``cd ..`` を実行し、HelloBlueprintディレクトリに戻ります。
+   -   ``calm create bp --file blueprint.py --name あなたのイニシャル-HelloDsl`` を実行します。これはblueprint.pyファイルをjsonに変換し、Calmにプッシュします。
 
-    -   class HelloPackage(Package)の下には、scriptsディレクトリのpkg\_install\_task.shスクリプトへの参照があります。 (行 139)
+   .. figure:: images/syncbp.png
 
-    -   VMの基本スペック情報（vCPU/メモリ/ディスク/NIC) (行 153-159)
+   -  **任意** ``calm compile bp -f blueprint.py`` を実行すると、Python形式からjson形式のPythonブループリントが表示されます。
+   -   新しいブループリントを確認するには、 ``calm get bps -q`` を実行してください。ブループリントが正しく作成されていることを確認します。
 
-    -   cloud-initによるゲストのカスタマイズ (教 161-171)
+   .. figure:: images/verifygrep.png
 
--   blueprint.pyでは、vCPUの数を変更します。
+#. ブループリントからアプリケーションを起動します。
 
-    -   vCPUを2から4に増やします。 (行 154)
+   -  新しいアプリを起動する前に ``calm get apps`` を実行して、現在のアプリをすべて確認してください。
+   -  また、 ``calm get apps -q`` を実行することで、先ほどのブループリントで行ったようにアプリケーション名のみをリストすることができます。
+   -  ``calm launch bp あなたのイニシャル-HelloDsl --app_name あなたのイニシャル-HelloDsl -i`` を実行します。
 
-.. figure:: images/vcpu.png
+   .. figure:: images/launchbp.png
 
--   マクロを使用して一意のVM名を追加する (行 185)
+   -  ``calm describe app あなたのイニシャル-HelloDsl``` を実行し、アプリケーションの詳細を確認します。
 
-    -   ```provider_spec.name = "<あなたのイニシャル>-@@{calm_unique}@@"```
+#. アプリの **Status** が **running** になればアプリケーションの起動が完了し、nginxによるWebサーバが起動されます。
 
-.. figure:: images/vmname.png
+   .. figure:: images/describe.png
 
--   Pythonによるブループリントファイルを保存して閉じるために、```:wq`````を書き込んで終了します。
+#. VM/アプリケーションのIPアドレスを取得します。
 
-## pkg\_install\_task.shの修正
+   -  ``calm describe app AppFromDSL-<Initials> --out json | jq '.status.resources.deployment_list[].substrate_configuration.element_list[].address'`` を実行して、WebサーバのIPアドレスを取得します。
 
--   scriptsディレクトリに移動して、 ```ls``` を実行してください。blueprint.pyの中で参照されている2つのスクリプトが表示されます。
+   .. figure:: images/jqout.png
 
--   現在のインストールスクリプトの内容を見るには、 ```cat pkg_install_task.sh``` を実行してください。このスクリプトは何をしているのでしょうか？
+#. ウェブブラウザでIPアドレスを入力すると、nginxによる **Welcome to DSL** のウェブページが表示されます。
 
-.. figure:: images/more1.png
+   .. figure:: images/welcome2.png
 
--   既存のインストールスクリプトを置き換えるために、 ```curl -Sks https://raw.githubusercontent.com/bmp-ntnx/prep/master/nginx > pkg_install_task.sh``` を実行してください。
+#. Prism Centralにログインして確認し、作成したブループリント及びアプリケーションがGUI上でも反映されていることを確認します。
 
--   変更されたスクリプトを見るには、 ```cat pkg_install_task.sh``` を実行してください。今度はスクリプトは何をするようになったのでしょうか？
+   -  DSLから作成したブループリントを確認
+   -  DSLから起動したアプリケーションを確認
 
-.. figure:: images/more2.png
+おわりに
+++++++++
 
-## 変更したblueprint.pyをCalmに送信
+この演習では、Calm DSLを使用するだけでなく、vi, curl, grep, cat, pipe, redirects などのLinuxネイティブツールも使用しました。Calm DSL は、これらの強力なツールと組み合わせることで、Calmブループリントに対して柔軟な拡張を可能にします。このワークフローにgitを追加して変更を追跡したり、sedを使ってブループリントを修正したりする方法を考えてみましょう。
 
--   HelloBlueprintディレクトリに戻ります
-
--   ```calm create bp --file blueprint.py --name FromDSL-<Initials>``` を実行します。
-
-    -   これは.pyファイルをjsonに変換してCalmにプッシュします。
-
-.. figure:: images/syncbp.png
-
--   **任意** ```calm compile bp -f blueprint.py``` を実行すると、DSLからjson形式のPythonブループリントが表示されます。
-
--   新しいブループリントを確認するには、 ```calm get bps -q | grep FromDSL-<あなたのイニシャル>``` を実行してください。
-
-.. figure:: images/verifygrep.png
-
-## ブループリントを起動
-
--   新しいアプリを起動する前に ```calm get apps``` を実行して、現在のアプリをすべて確認してください。
-
-    -   また、 ```calm get apps -q``` を実行することで、先ほどのブループリントで行ったようにアプリケーション名のみをリストすることができます。
-
--   新しくアップロードしたブループリントをアプリケーションに起動する
-
--   ```calm launch bp FromDSL-<Initials> --app_name AppFromDSL-<Initials> -i``` を実行します。
-
-.. figure:: images/launchbp.png
-
--   ```calm describe app AppFromDSL-<Initials>``` を実行し、アプリケーションの詳細を確認します。
-
--   アプリのステータスが **実行中** になったら、Calm DSLからnginxサーバーをデプロイします。
-
-.. figure:: images/describe.png
-
--   ここでVM/アプリケーションのIPアドレスを取得する必要があります。 これを取得するために、 ```calm describe app AppFromDSL-<Initials> --out json | jq '.status.resources.deployment_list[].substrate_configuration.element_list[].address'``` を実行して、jqを使ってアプリケーションのjson出力から "IPアドレス"を取得します。
-
-.. figure:: images/jqout.png
-
--   ウェブブラウザでIPアドレスを入力すると、nginxによる **"Welcome to DSL "** のウェブページが表示されます。
-
-.. figure:: images/welcome2.png
-
-## Prism Centralにログインして確認する
-
--   DSLから作成したブループリントを確認
-
--   DSLから起動したアプリケーションを確認
-
-## 終わりに
-
-この演習では、Calm DSLを使用するだけでなく、vi, curl, grep, cat, pipe, redirects などのLinuxネイティブツールも使用しました。Calm DSL は、これらの強力なツールと組み合わせることで、柔軟な拡張を可能にします。このワークフローにgitを追加して変更を追跡したり、sedを使ってブループリントを修正したりする方法を考えてみましょう。
-
-## 任意: Gitとは
+(任意)Git演習
+++++++++
 
 私たちのブループリントを git にプッシュしてみましょう。 始める前にgithub.comのアカウントが必要です。
 
--   git にログインして新しいレポジトリ、"dsl-blueeprints"を作成します。
+#. git にログインして新しいレポジトリ、"dsl-blueeprints"を作成します。
 
--   HelloBlueprintディレクトリから以下を実行します。
+#. HelloBlueprintディレクトリから以下を実行します。
 
-    - ```echo "# dsl-blueprints" >> README.md``` : READMEを作成します
+   -  ``echo "# dsl-blueprints" >> README.md`` - READMEを作成します
+   -  ``git init`` - 作業ディレクトリで git を初期化します。
+   -  ``git config --global user.email "<youremail>@example.com"`` - あなたのgithub ID
+   -  ``git config --global user.name "<GitUserName>"`` -  あなたのgithub パスワード
+   -  ``git config --global color.ui true`` - わかりやすいように色付けします
+   -  ``git remote add origin https://github.com/<Githubユーザ名>/dsl-blueprints.git`` - あなたのリモートレポジトリを追加します。
+   -  ``git remote -v`` - あなたのリモートレポジトリの詳細を確認します。
 
-    - ```git init``` : 作業ディレクトリで git を初期化します。
+   .. figure:: images/gitsetup.png
 
-    - ```git config --global user.email "<youremail>@example.com"``` : あなたのgithub ID
+   -  ``git status`` - gitにより管理されているコードセットを確認します。
+   -  ``git add --all`` - カレントディレクトリ内のすべてのファイルをステージングに追加します。
+   -  ``git status`` - ファイルを追加した後の変更点を確認します。
 
-    - ```git config --global user.name "<GitUserName>"``` :  あなたのgithub パスワード
+   .. figure:: images/gitstatus.png
 
-    - ```git config --global color.ui true``` : わかりやすいように色付けします
+   -  上の出力を見ると、いくつかの鍵があることがわかりますので、公開レポにプッシュされているので、それらを削除しましょう。
+   -  ``git rm --cached .local -r`` - .localファイルを削除します。
+   -  ``git status`` - コードセットを確認します。
 
-    - ```git remote add origin https://github.com/<GitUserName>/dsl-blueprints.git``` : あなたのリモートレポジトリを追加します。
+   .. figure:: images/gitremove.png
 
-    - ```git remote -v``` : あなたのリモートレポジトリの詳細を確認します。
+   -  ``git commit -m "My DSL blueprints"`` - コードセットをコミットします。
 
-    .. figure:: images/gitsetup.png
+   .. figure:: images/gitcommit.png
 
-    - ```git status``` : gitにより管理されているコードセットを確認します。
+   -  ``git push -u origin master`` - Githubのリモートレポジトリに送信します。githubへのキーアクセスを設定しない限り、ユーザー/パスの入力を求められます。
 
-    - ```git add --all``` : カレントディレクトリ内のすべてのファイルをステージングに追加します。
+   .. figure:: images/gitpush.png
 
-    - ```git status``` : ファイルを追加した後の変更点を確認します。
+   -  Githubのレポをチェックして、ファイルがプッシュされたことを確認してください。 あなたのブループリントはCalmとGithubの両方に存在ます。以下を実行し、ブループリント中のメモリを8に増やしてみます。
+   -  ``sed -i 's/memory = 4/memory = 8/g' blueprint.py`` - linuxのsedツールを使ってメモリ設定を変更する
+   -  ``git add blueprint.py`` - 変更内容をステージング環境に追加します。
+   -  ``git commit -m "change memory"`` - 変更内容をコミットします。
+   -  ``git push -u origin master`` - 変更内容をリモートレポジトリ(github)に送信します。
+   -  githubに戻ると、blueprint.pyの "history"の下に新しいバージョンがあり、メモリが変更されています。
 
-    .. figure:: images/gitstatus.png
-
-    - 上の出力を見ると、いくつかの鍵があることがわかりますので、公開レポにプッシュされているので、それらを削除しましょう。
-
-    - ```git rm --cached .local -r``` : .localファイルを削除します。
-
-    - ```git status``` : コードセットを確認します。
-
-    .. figure:: images/gitremove.png
-
-    - ```git commit -m "My DSL blueprints"``` : コードセットをコミットします。
-
-    .. figure:: images/gitcommit.png
-
-     - ```git push -u origin master``` :  Githubのリモートレポジトリに送信します。githubへのキーアクセスを設定しない限り、ユーザー/パスの入力を求められます。
-
-    .. figure:: images/gitpush.png
-
-     -  Githubのレポをチェックして、ファイルがプッシュされたことを確認してください。 あなたのブループリントはCalmとGithubの両方に存在ます。以下を実行し、ブループリント中のメモリを8に増やしてみます。
-
-        - ```sed -i 's/memory = 4/memory = 8/g' blueprint.py``` : linuxのsedツールを使ってメモリ設定を変更する
-
-        - ```git add blueprint.py``` : 変更内容をステージング環境に追加します。
-
-        - ```git commit -m "change memory"``` : 変更内容をコミットします。
-
-        - ```git push -u origin master``` : 変更内容をリモートレポジトリ(github)に送信します。
-
-    - githubに戻ると、blueprint.pyの "history"の下に新しいバージョンがあり、メモリが変更されています。
-
-    .. figure:: images/diff.png
+   .. figure:: images/diff.png
 
