@@ -1,29 +1,93 @@
 .. _calm_dsl:
 
 --------------------
-Calm: DSLのクイックスタート
+Calm: DSL(Domain Specific Language)のクイックスタート
 --------------------
+
+*この演習の所要時間は約20分です。*
 
 はじめに
 ++++++++
 
-DSLの演習をすぐに始められるように [DevWorkStation.json](https://raw.githubusercontent.com/bmp-ntnx/QuickStartCalmDSL/master/DevWorkstation.json) のブループリントを用意しました。同梱されているDevWorkstation.jsonは、必要なツールをすべて含んだ CentOS VMを構築します。この設計図はCalmから直接起動することができますが、セルフサービス用のCalm Marketplaceに公開することをお勧めします。 また、アイコンとして使用できる[software-developer.png](https://github.com/bmp-ntnx/QuickStartCalmDSL/blob/master/software-developer.pngも付属しています。
+`Calm DSL <https://github.com/nutanix/calm-dsl>`_はNutanix CalmにおいてInfrastructure as Code(IaC)を実現するためのツールです。calm CLIとpythonによるブループリントからなり、git等のSCMツールと併せて利用することでブループリント開発における差分情報の追跡、チーム開発が可能となります。またJenkins等のCI/CDツールと組み合わせることでブループリント開発における継続的インテグレーション/継続的デプロイメントのプラクティス実現を可能とします。Calm DSLによる開発環境はPythonのvenvを利用する方法、Dockerコンテナを利用する方法の2通りの方法で得ることが出来ますが、本演習ではDockerコンテナを利用してCalm DSLによる開発環境を構築し、実際にCalm DSLによりNutabnixクラスタ上に仮想マシンを起動します。
 
-## CalmのマーケットプレイスからDevWorkstationを起動
+#. `こちら <https://shuchida.s3-ap-northeast-1.amazonaws.com/DevWorkstation.json>`_からとなるブループリントをローカルマシンにダウンロードします。(ブラウザの機能においてファイルを別名ダウンロードしてください。)
 
-.. figure:: images/MPDevWorkstation.png
+#. 以下の項目を記入し、 **アップロード** をクリックします。
 
--   **重要: 認証情報タブを選択し、希望するユーザー/パスを入力します。**
+   - **ブループリント名** - *あなたのイニシャル*-DevWorkstation
+   - **プロジェクト** - *あなたのイニシャル*-Project
 
-.. figure:: images/Creds.png
+   .. figure:: images/uploadbp.png
+       :align: center
+       :alt: DevWorkstation Blueprint
 
--   アプリケーション名 "DevWorkstation-あなたのイニシャル" を入力し、必要事項を記入してください。
+       DevWorkstation ブループリント
 
-.. figure:: images/DevLaunch.png
+#. IaaSの演習とは異なるブループリント作成画面が現れました。こちらは複数仮想マシンによるアプリケーション環境を構築可能なブループリントとなります。
 
--   **作成** をクリックします。
+   .. figure:: images/multivmbp.png
+       :align: center
+       :alt: DevWorkstation Blueprint
 
--   待機中に **監査** メニュー内のログを確認して、パッケージがデプロイされているのを確認してください。ブループリントは、Calm DSLと一緒にいくつかのユーティリティを自動的にインストールします。
+       DevWorkstation ブループリント
+
+#. 画面左側のペインでアプリケーションプロファイル > Defaultが設定された状態で、右側の変数を設定します。
+
+   - **PrismCentral_IP** - あなたに割り当てられたPrism CentralのIPアドレス
+   - **PrismCentral_Port** - 9440 (デフォルト)
+   - **PrismCentral_User** - admin (デフォルト)
+   - **PrismCentral_Password** - あなたに割り当てられたPrism Centralのadminパスワード
+   - **CalmProject** - *あなたのイニシャル*-Project
+
+   .. figure:: images/bpvar.png
+       :align: center
+       :alt: DevWorkstation Blueprint Variables
+
+       DevWorkstation 変数
+
+#. 画面左側のペインでサービス > DSLが設定された状態で、右側の仮想マシンを設定します。NETWORK ADAPTORS(NIC)の項目で
+
+   - **NIC1** - Primary
+
+   .. figure:: images/nic.png
+       :align: center
+       :alt: DevWorkstation Blueprint Virtual Machine
+
+       DevWorkstation 仮想マシン
+
+#. 画面中央上部の **認証情報** をクリックします。
+
+#. 認証情報名localにおいてパスワードを入力します。
+
+   - **パスワード** - 好みのパスワード
+
+   .. figure:: images/cred.png
+       :align: center
+       :alt: DevWorkstation Blueprint Credentials
+       
+       DevWorkstation 認証情報
+
+#. **保存** をクリック後、 **戻る** をクリックします。
+
+#. 赤いエラーや黄色の警告が出ていないのを確認後、画面右上部の **起動** をクリックします。
+
+#. **作成** をクリックします。
+
+   .. figure:: images/launch.png
+       :align: center
+       :alt: DevWorkstation Blueprint Launch
+
+       DevWorkstation 起動
+   
+#. 待機中に **監査** メニュー内のログを確認して、パッケージがデプロイされているのを確認してください。ブループリントは、Calm DSLと一緒にいくつかのユーティリティを自動的にインストールします。
+
+
+
+
+
+
+
 
 ## アプリケーションが **実行中** になったら、DevWorkstationにSSHでアクセスします。
 
