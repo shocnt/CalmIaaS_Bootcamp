@@ -202,11 +202,11 @@ Infrastructure-as-a-Service(IaaS)は、セルフサービスポータルを介�
     - **アプリケーションの名前** - *あなたのイニシャル*-CentOS-IaaS
     - **vm_password** - Nutanix/4u
 
-.. figure:: images/18_launch.png
-    :align: center
-    :alt: Blueprint Launch
+   .. figure:: images/18_launch.png
+       :align: center
+       :alt: Blueprint Launch
 
-    ブループリントの起動
+       ブループリントの起動
 
 #. **作成** をクリックすると、アプリケーションのページが表示されます。
 
