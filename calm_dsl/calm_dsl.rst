@@ -9,9 +9,9 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 はじめに
 ++++++++
 
-`Calm DSL <https://github.com/nutanix/calm-dsl>`_はNutanix CalmにおいてInfrastructure as Code(IaC)を実現するためのツールです。calm CLIとpythonによるブループリントからなり、git等のSCMツールと併せて利用することでブループリント開発における差分情報の追跡、チーム開発が可能となります。またJenkins等のCI/CDツールと組み合わせることでブループリント開発における継続的インテグレーション/継続的デプロイメントのプラクティス実現を可能とします。Calm DSLによる開発環境はPythonのvenvを利用する方法、Dockerコンテナを利用する方法の2通りの方法で得ることが出来ますが、本演習では前者のPythonのvenvを利用したCalm DSLによる開発環境を構築し、実際にCalm DSLによりNutabnixクラスタ上に仮想マシンを起動します。
+`Calm DSL <https://github.com/nutanix/calm-dsl>`_　はNutanix CalmにおいてInfrastructure as Code(IaC)を実現するためのツールです。calm CLIとpythonによるブループリントからなり、git等のSCMツールと併せて利用することでブループリント開発における差分情報の追跡、チーム開発が可能となります。またJenkins等のCI/CDツールと組み合わせることでブループリント開発における継続的インテグレーション/継続的デプロイメントのプラクティス実現を可能とします。Calm DSLによる開発環境はPythonのvenvを利用する方法、Dockerコンテナを利用する方法の2通りの方法で得ることが出来ますが、本演習では前者のPythonのvenvを利用したCalm DSLによる開発環境を構築し、実際にCalm DSLによりNutabnixクラスタ上に仮想マシンを起動します。
 
-#. `こちら <https://shuchida.s3-ap-northeast-1.amazonaws.com/DevWorkstation.json>`_からブループリントをローカルマシンにダウンロードします。(ブラウザの機能においてファイルを別名ダウンロードしてください。)
+#. `こちら <https://shuchida.s3-ap-northeast-1.amazonaws.com/DevWorkstation.json>`_　からブループリントをローカルマシンにダウンロードします。(ブラウザの機能においてファイルを別名ダウンロードしてください。)
 
 #. 以下の項目を記入し、 **アップロード** をクリックします。
 
