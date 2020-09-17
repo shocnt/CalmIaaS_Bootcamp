@@ -157,7 +157,7 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 
    .. figure:: images/syncbp.png
 
-   -  **任意** ``calm compile bp -f blueprint.py`` を実行すると、Python形式からjson形式のPythonブループリントが表示されます。
+   -  **(任意)** ``calm compile bp -f blueprint.py`` を実行すると、Python形式からjson形式のPythonブループリントが表示されます。
    -   新しいブループリントを確認するには、 ``calm get bps -q`` を実行してください。ブループリントが正しく作成されていることを確認します。
 
    .. figure:: images/verifygrep.png
