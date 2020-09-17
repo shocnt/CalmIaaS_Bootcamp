@@ -9,7 +9,7 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 はじめに
 ++++++++
 
-`Calm DSL <https://github.com/nutanix/calm-dsl>`_　はNutanix CalmにおいてInfrastructure as Code(IaC)を実現するためのツールです。calm CLIとpythonによるブループリントからなり、git等のSCMツールと併せて利用することでブループリント開発における差分情報の追跡、チーム開発が可能となります。またJenkins等のCI/CDツールと組み合わせることでブループリント開発における継続的インテグレーション/継続的デプロイメントのプラクティス実現を可能とします。Calm DSLによる開発環境はPythonのvenvを利用する方法、Dockerコンテナを利用する方法の2通りの方法で得ることが出来ますが、本演習では前者のPythonのvenvを利用したCalm DSLによる開発環境を構築し、実際にCalm DSLによりNutabnixクラスタ上に仮想マシンを起動します。
+`Calm DSL <https://github.com/nutanix/calm-dsl>`_ はNutanix CalmにおいてInfrastructure as Code(IaC)を実現するためのツールです。calm CLIとpythonによるブループリントからなり、git等のSCMツールと併せて利用することでブループリント開発における差分情報の追跡、チーム開発が可能となります。またJenkins等のCI/CDツールと組み合わせることでブループリント開発における継続的インテグレーション/継続的デプロイメントのプラクティス実現を可能とします。Calm DSLによる開発環境はPythonのvenvを利用する方法、Dockerコンテナを利用する方法の2通りの方法で得ることが出来ますが、本演習では前者のPythonのvenvを利用したCalm DSLによる開発環境を構築し、実際にCalm DSLによりNutabnixクラスタ上に仮想マシンを起動します。
 
 #. `こちら <https://github.com/shocnt/CalmIaaS_Bootcamp/raw/master/calm_dsl/DevWorkstation.json>`_ からブループリントをローカルマシンにダウンロードします。(ブラウザの機能においてファイルを別名ダウンロードしてください。)
 
@@ -73,7 +73,9 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 
 #. 赤いエラーや黄色の警告が出ていないのを確認後、画面右上部の **起動** をクリックします。
 
-#. **作成** をクリックします。
+#. 以下入力後、**作成** をクリックします。
+
+   - **アプリケーションの名前** - *あなたのイニシャル*-DevWorkstation
 
    .. figure:: images/launch.png
        :align: center
@@ -81,7 +83,7 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 
        DevWorkstation 起動
    
-#. 待機中に **監査** メニュー内のログを確認して、パッケージがデプロイされているのを確認してください。ブループリントは、Calm DSLと一緒にいくつかのユーティリティを自動的にインストールします。
+#. 待機中に **監査** メニュー内の **作成** 工程におけるログを確認して、パッケージがデプロイされている様子を確認してください。ブループリントは、Calm DSLと一緒にいくつかのユーティリティを自動的にインストールします。
 
 #. アプリケーションが **実行中** になったら、DevWorkstationにSSHでアクセスします。
 
@@ -132,7 +134,7 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 
    .. figure:: images/vcpu.png
 
-   -   マクロを使用してVM名を追加します。(行 185) ``provider_spec.name = "あなたのイニシャル-@@{calm_unique}@@"``を追加して下さい。
+   -   マクロを使用してVM名を追加します。(行 185) ``provider_spec.name = "あなたのイニシャル-@@{calm_unique}@@"`` を追加して下さい。
 
    .. figure:: images/vmname.png
 
@@ -171,7 +173,7 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 
    .. figure:: images/launchbp.png
 
-   -  ``calm describe app あなたのイニシャル-HelloDsl``` を実行し、アプリケーションの詳細を確認します。
+   -  ``calm describe app あなたのイニシャル-HelloDsl`` を実行し、アプリケーションの詳細を確認します。
 
 #. アプリの **Status** が **running** になればアプリケーションの起動が完了し、nginxによるWebサーバが起動されます。
 
@@ -179,7 +181,7 @@ Calm: DSL(Domain Specific Language)のクイックスタート
 
 #. VM/アプリケーションのIPアドレスを取得します。
 
-   -  ``calm describe app AppFromDSL-<Initials> --out json | jq '.status.resources.deployment_list[].substrate_configuration.element_list[].address'`` を実行して、WebサーバのIPアドレスを取得します。
+   -  ``calm describe app あなたのイニシャル-HelloDsl --out json | jq '.status.resources.deployment_list[].substrate_configuration.element_list[].address'`` を実行して、WebサーバのIPアドレスを取得します。
 
    .. figure:: images/jqout.png
 
