@@ -308,15 +308,13 @@ GetDefaultSubnet カスタム アクション
    - **名前** - *Initials* Prism Central Runtime List
    - **address** - **Prism_Central_IP** に変更
 
-   .. figure:: images/publish_task.pgng
+   .. figure:: images/publish_task.png
 
 #. **適用** をクリックして、元の **address** マクロがスクリプトウィンドウの **Prism_Central_IP** に置き換えられていることに注意してください。マクロ名を置き換えることで、タスクの移植性を高めるために、より一般的にすることができます。
 
 #. **公開** をクリックします。
 
 #. サイドバーの **Library** を開きます。公開されているタスクを選択します。デフォルトでは、そのタスクは元々公開されていたプロジェクトで利用できますが、タスクを共有するプロジェクトを追加で指定することもできます。
-
-   .. figure:: images/library_items.png
 
 #. `NutanixのGithub <https://github.com/nutanix/blueprints/tree/master/library/task-library>`_ では、再利用可能な200以上のタスクがありますので、確認してみて下さい。
 
