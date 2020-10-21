@@ -275,7 +275,7 @@ GetDefaultSubnet カスタム アクション
 
    .. figure:: images/apps_run2.png
 
-#. **RESTList** アクションを再度実行し、値を **images** 、 **clusters** 、 **hosts** 、 **vms** などの別の `Prism Central APIエンティティ<https://developer.nutanix.com/reference/prism_central/v3/>`_ に変更します。それぞれの情報が取得出来ていることを確認します。
+#. **RESTList** アクションを再度実行し、値を **images** 、 **clusters** 、 **hosts** 、 **vms** などの別のPrism Central APIエンティティに変更します。それぞれの情報が取得出来ていることを確認します。
 
 #. 最後に、 **GetDefaultSubnet** アクションを実行します。 **GetSubnetUUID** タスクと **GetSubnetInfo** タスクの両方を展開し、各タスクの出力を確認します。デフォルトのサブネットの名前とVLAN IDは何ですか？
 
