@@ -31,7 +31,7 @@
   :name: _additional_calm_labs
   :hidden:
 
-  calm_dsl/calm_dsl
+  calm_escript/calm_escript
 
 .. toctree::
   :maxdepth: 2
