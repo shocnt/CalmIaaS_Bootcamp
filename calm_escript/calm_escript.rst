@@ -109,7 +109,7 @@ RESTList カスタムアクション
    - **値** - apps
    - 右上の走る人のアイコンを青に変更して **ランタイム変更可能** を選択してください。
 
-   .. figure:: images/calm3/restlist.png
+   .. figure:: images/restlist.png
 
    後でカスタムアクションを実行すると、Calmはユーザーに入力を求めます。 **apps** はデフォルト値があらかじめ入力されていますが、スクリプトアクションを実行する前に変更することができます。
 
@@ -142,7 +142,7 @@ RESTList カスタムアクション
         print "Post request failed", resp.content
         exit(1)
 
-   .. figure:: images/calm3/runtime_post.png
+   .. figure:: images/runtime_post.png
 
    このタスクには、新しくて面白い機能がいくつかあります。
 
@@ -167,13 +167,13 @@ GetDefaultSubnet カスタム アクション
    - **データのタイプ** - String
    - **値** - 空白のままとします
  
-   .. figure:: images/calm3/subnet_variable.png
+   .. figure:: images/subnet_variable.png
  
 #. **アプリケーションプロファイル > Default** セクションにおいて、 **アクション** の隣の :fa:`plus-circle` を選択し、新規のアクションを追加します。
  
 #. アクション名を **GetDefaultSubnet** とします。
  
-   .. figure:: images/calm3/get_default_subnet.png
+   .. figure:: images/get_default_subnet.png
  
 #. ESｃriptタスクを **GetDefaultSubnet** カスタムアクションに追加するには、画面中央の"PC"サービスにおいて **+タスク** ボタンをクリックします。 以下のフィールドを入力します。
  
@@ -221,7 +221,7 @@ GetDefaultSubnet カスタム アクション
        print "Post clusters/list request failed", resp.content
        exit(1)
  
-         .. figure:: images/calm3/get_subnet_uuid.png
+         .. figure:: images/get_subnet_uuid.png
  
    **RESTList** タスクと **GetDefaultSubnet** タスクの間には、2つの重要な違いがあります。
    
@@ -259,7 +259,7 @@ GetDefaultSubnet カスタム アクション
  
    このタスクでは、GET APIコールと前のタスクで返された **SUBNET** UUID変数を使用して、デフォルトのサブネットの詳細を動的に返します。 
  
-   .. figure:: images/calm3/get_subnet_info.png
+   .. figure:: images/get_subnet_info.png
  
 #. **保存** をクリックし、エラーや警告が表示されないことを確認します。
 
@@ -272,7 +272,7 @@ GetDefaultSubnet カスタム アクション
 
 #. アプリケーションが **実行中** の状態になったら、 **管理** タブを選択します。
 
-   .. figure:: images/calm3/app_create.png
+   .. figure:: images/app_create.png
 
 #. 次に、 **RESTList** アクションの :fa:`play` アイコンをクリックして、 **RESTList** アクションを実行します。新しいウィンドウが表示され、 **kind** 変数とデフォルトの **apps** 値が表示されます。 **実行** をクリックします。
 
@@ -280,7 +280,7 @@ GetDefaultSubnet カスタム アクション
 
 #. 右側のペインの出力で、 **RuntimePost** タスクを最大化し、API出力を表示します。 :fa:`eye` アイコンをクリックすることで、出力ペインを切り替えることができます。出力/スクリプトウィンドウを最大化すると、確認しやすくなります。予想通り、スクリプトは、Calmで起動した各アプリケーションや仮想マシンの情報を記述した配列を持つJSONボディを返します。
 
-   .. figure:: images/calm3/apps_run2.png
+   .. figure:: images/apps_run2.png
 
 #. **RESTList** アクションを再度実行し、値を **images** 、 **clusters** 、 **hosts** 、 **vms** などの別の _`Prism Central APIエンティティ<https://developer.nutanix.com/reference/prism_central/v3/>`_ に変更します。それぞれの情報が取得出来ていることを確認します。
 
@@ -308,7 +308,7 @@ GetDefaultSubnet カスタム アクション
    - **名前** - *Initials* Prism Central Runtime List
    - **address** - **Prism_Central_IP** に変更
 
-   .. figure:: images/publish_task.png
+   .. figure:: images/publish_task.pgng
 
 #. **適用** をクリックして、元の **address** マクロがスクリプトウィンドウの **Prism_Central_IP** に置き換えられていることに注意してください。マクロ名を置き換えることで、タスクの移植性を高めるために、より一般的にすることができます。
 
@@ -316,7 +316,7 @@ GetDefaultSubnet カスタム アクション
 
 #. サイドバーの **Library** を開きます。公開されているタスクを選択します。デフォルトでは、そのタスクは元々公開されていたプロジェクトで利用できますが、タスクを共有するプロジェクトを追加で指定することもできます。
 
-   .. figure:: images/calm3/library_items.png
+   .. figure:: images/library_items.png
 
 #. `NutanixのGithub <https://github.com/nutanix/blueprints/tree/master/library/task-library>`_ では、再利用可能な200以上のタスクがありますので、確認してみて下さい。
 
@@ -345,4 +345,4 @@ GetDefaultSubnet カスタム アクション
 .. |bp-icon| image:: ../images/blueprints_icon.png
 .. |blueprints| image:: images/blueprints.png
 .. |applications| image:: images/blueprints.png
-.. |eye| images:: images/calm3/eye.png
+.. |eye| images:: images/eye.png
