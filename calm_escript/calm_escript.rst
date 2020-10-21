@@ -343,4 +343,3 @@ GetDefaultSubnet カスタム アクション
 .. |bp-icon| image:: ../images/blueprints_icon.png
 .. |blueprints| image:: images/blueprints.png
 .. |applications| image:: images/blueprints.png
-.. |eye| images:: images/eye.png
