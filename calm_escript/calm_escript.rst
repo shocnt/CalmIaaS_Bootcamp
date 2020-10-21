@@ -136,11 +136,11 @@ RESTList カスタムアクション
 
      # If the request went through correctly, print it out.  Otherwise error out, and print the response.
      if resp.ok:
-        print json.dumps(json.loads(resp.content), indent=4)
-        exit(0)
+      print json.dumps(json.loads(resp.content), indent=4)
+      exit(0)
      else:
-        print "Post request failed", resp.content
-        exit(1)
+      print "Post request failed", resp.content
+      exit(1)
 
    .. figure:: images/runtime_post.png
 
