@@ -7,7 +7,7 @@ Calm: EScriptとTask Library
 概要
 ++++++++
 
-:ref:`calm_iaas_linux` と :ref:`calm_iaas_win` の演習では、BashやPowerShellスクリプトを利用してアプリケーションのデプロイを自動化する方法を検討しました。シェルスクリプトは強力で汎用性がありますが、スクリプトをローカルにコピーして実行するためにエンドポイントVMをデプロイする必要があります。
+:ref:`calm_iaas_linux` と :ref:`calm_iaas_windows` の演習では、BashやPowerShellスクリプトを利用してアプリケーションのデプロイを自動化する方法を検討しました。シェルスクリプトは強力で汎用性がありますが、スクリプトをローカルにコピーして実行するためにエンドポイントVMをデプロイする必要があります。
 
 Nutanix Era、GitHub、IFTTTなどのような他のRESTfulサービスへのAPI呼び出しなど、Calm内で直接コードを実行した方が良いユースケースもあります。
 
@@ -24,7 +24,7 @@ Nutanix Era、GitHub、IFTTTなどのような他のRESTfulサービスへのAPI
 
 このラボでは、Nutanix Calmの基本的な知識を前提としています。
 
-**他のCalm演習の一部としてデプロイされた仮想マシンは必要ありません。** 新しい空白のブループリントを作成し、Prism Centralへの認証に使用するクレデンシャルを追加します。
+**他のCalm演習の一部としてデプロイされた仮想マシンは必要ありません。** 新しいブループリントを作成し、Prism Centralへの認証に使用するクレデンシャルを追加します。
 
 #. **Prism Central** で、 :fa:`bars` **> サービス > Calm** を選択します。
 
@@ -65,20 +65,13 @@ Existing Machineサービスの使用
 
 #. **VM** タブで、以下のフィールドを入力します。
 
-   +------------------------------+------------------+
-   | **サービス名**                  | PC               |
-   +------------------------------+------------------+
-   | **名前**            　　 　    | PrismCentral     |
-   +------------------------------+------------------+
-   | **クラウド**                    | 既存のマシン        |
-   +------------------------------+------------------+
-   | **オペレーティングシステム**       | Linux            |
-   +------------------------------+------------------+
-   | **IP アドレス**                 | localhost        |
-   +------------------------------+------------------+
-   | **作成時ログインのチェック**       | **チェックしない**   |
-   +------------------------------+------------------+
-
+   - **サービス名** - PC
+   - **名前** - PrismCentral
+   - **クラウド** - 既存のマシン
+   - **オペレーティングシステム** - Linux
+   - **IP アドレス** - localhost
+   - **作成時ログインのチェック** - **チェックしない**
+   
    .. figure:: images/app_vm.png
 
    上記構成の中には、新しく出てきた概念がいくつかあります。
@@ -111,9 +104,9 @@ RESTList カスタムアクション
 
    .. figure:: images/restlist.png
 
-   後でカスタムアクションを実行すると、Calmはユーザーに入力を求めます。 **apps** はデフォルト値があらかじめ入力されていますが、スクリプトアクションを実行する前に変更することができます。
+   後でカスタムアクションを実行すると、Calmはユーザーに入力を求めます。 **kind** はデフォルト値(apps)があらかじめ入力されていますが、スクリプトアクションを実行する前に変更することができます。
 
-#. ESｃriptタスクを **RESTList** カスタムアクションに追加するには、画面中央の"PC"サービスにおいて **+タスク** ボタンをクリックします。 以下のフィールドを入力します。
+#. EScriptタスクを **RESTList** カスタムアクションに追加するには、画面中央の"PC"サービスにおいて **+タスク** ボタンをクリックします。 以下のフィールドを入力します。
 
    - **タスク名** - RuntimePost
    - **タイプ** - 実行
@@ -146,9 +139,9 @@ RESTList カスタムアクション
 
    このタスクには、新しくて面白い機能がいくつかあります。
 
-   "スクリプトタイプ"としてShell、ESｃript、Powershellが選択可能です。ShellやPowershellを選択すると、"サービス"として指定した可能マシンにおいてシェルスクリプトやPowershellの実行が可能です。ここではEScriptを選択しているため、Calm内にあるpythonのサンドボックス環境においてpythonスクリプトが実行されます。
+   "スクリプトタイプ"としてShell、EScript、Powershellが選択可能です。ShellやPowershellを選択すると、"サービス"として指定した可能マシンにおいてシェルスクリプトやPowershellの実行が可能です。ここではEScriptを選択しているため、Calm内にあるpythonのサンドボックス環境においてpythonスクリプトが実行されます。
    
-   Calm UIにはCredentialドロップダウンがなく、代わりに先ほど指定したPC_Credsのユーザー名(@@{PC_Creds.username}@@O)とパスワード(@@{PC_Creds.secret}@@)と同じPython変数を設定していることに注意してください。他のAPIは認証を必要としない場合や、URLの一部としてAPIキーを提供する必要がある場合があります。
+   Calm UIにはCredentialドロップダウンがなく、代わりに先ほど指定したPC_Credsのユーザー名(@@{PC_Creds.username}@@)とパスワード(@@{PC_Creds.secret}@@)と同じPython変数を設定していることに注意してください。他のAPIは認証を必要としない場合や、URLの一部としてAPIキーを提供する必要がある場合があります。
 
    また、urlreqモジュールが使用されていることがわかります。レスポンスが期待通りに返された場合、JSONレスポンスはフォーマットされて出力され、そうでなければ対応するエラーメッセージが出力されます。
 
@@ -175,7 +168,7 @@ GetDefaultSubnet カスタム アクション
  
    .. figure:: images/get_default_subnet.png
  
-#. ESｃriptタスクを **GetDefaultSubnet** カスタムアクションに追加するには、画面中央の"PC"サービスにおいて **+タスク** ボタンをクリックします。 以下のフィールドを入力します。
+#. EScriptタスクを **GetDefaultSubnet** カスタムアクションに追加するには、画面中央の"PC"サービスにおいて **+タスク** ボタンをクリックします。 以下のフィールドを入力します。
  
    - **タスク名** - GetSubnetUUID
    - **タイプ** - 変数の設定
@@ -221,13 +214,13 @@ GetDefaultSubnet カスタム アクション
        print "Post clusters/list request failed", resp.content
        exit(1)
  
-         .. figure:: images/get_subnet_uuid.png
+   .. figure:: images/get_subnet_uuid.png
  
    **RESTList** タスクと **GetDefaultSubnet** タスクの間には、2つの重要な違いがあります。
    
    最初の違いは **変数の設定** タスクタイプの使用です。 **print "SUBNET={0}"** 行に注意してください。Calmは **変数=値** という形式で出力を解析し、その値に等しい変数を設定します。 この例では、 **SUBNET** という変数が、初期APIコールレスポンスの "default_subnet_reference"フィールドのUUIDと等しいことを出力しています。スクリプト本体の下にある、 **出力** フィールドに、変数を適切に設定するために Calmの変数名を正しく貼り付ける必要があります。この変数は、グローバル変数もしくは、 **PC** サービスのローカル変数として、Calmのブループリントにてすでに定義されている必要があります。
  
-   2つ目の違いは、 **PC_Cred** クレデンシャルを使用して、Prism Centralに対するAPIコールを認証していないことです。代わりに、組み込みの **calm_jwt** マクロによって提供される _`JSON Web Token <https://en.wikipedia.org/wiki/JSON_Web_Token>`_ を使用しています。
+   2つ目の違いは、 **PC_Cred** クレデンシャルを使用して、Prism Centralに対するAPIコールを認証していないことです。代わりに、組み込みの **calm_jwt** マクロによって提供される `JSON Web Token <https://en.wikipedia.org/wiki/JSON_Web_Token>`_ を使用しています。
  
 #. **+タスク** ボタンを再度クリックして、 **GetDefaultSubnet** カスタムアクションに2つ目のタスクを追加します。 以下のフィールドを入力します。
  
@@ -268,7 +261,7 @@ GetDefaultSubnet カスタム アクション
 
 #. ブループリントを起動します。画面右上の"起動"をクリックします。以下情報を入力し、"作成"をクリックします。この場合、新たに仮想マシンが起動されないので、作成タスクはすぐに完了するはずです。
 
-   - **アプリケーションの名前** - Initials-RestCalls
+   - **アプリケーションの名前** - *あなたのイニシャル*-RestCalls
 
 #. アプリケーションが **実行中** の状態になったら、 **管理** タブを選択します。
 
@@ -282,7 +275,7 @@ GetDefaultSubnet カスタム アクション
 
    .. figure:: images/apps_run2.png
 
-#. **RESTList** アクションを再度実行し、値を **images** 、 **clusters** 、 **hosts** 、 **vms** などの別の _`Prism Central APIエンティティ<https://developer.nutanix.com/reference/prism_central/v3/>`_ に変更します。それぞれの情報が取得出来ていることを確認します。
+#. **RESTList** アクションを再度実行し、値を **images** 、 **clusters** 、 **hosts** 、 **vms** などの別の `Prism Central APIエンティティ<https://developer.nutanix.com/reference/prism_central/v3/>`_ に変更します。それぞれの情報が取得出来ていることを確認します。
 
 #. 最後に、 **GetDefaultSubnet** アクションを実行します。 **GetSubnetUUID** タスクと **GetSubnetInfo** タスクの両方を展開し、各タスクの出力を確認します。デフォルトのサブネットの名前とVLAN IDは何ですか？
 
@@ -305,7 +298,7 @@ GetDefaultSubnet カスタム アクション
 
 #. **タスクを公開** ウィンドウで、以下の変更を行います。
 
-   - **名前** - *Initials* Prism Central Runtime List
+   - **名前** - *あなたのイニシャル* Prism Central Runtime List
    - **address** - **Prism_Central_IP** に変更
 
    .. figure:: images/publish_task.png
