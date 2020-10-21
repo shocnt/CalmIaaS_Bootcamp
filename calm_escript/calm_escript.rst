@@ -56,8 +56,6 @@ Nutanix Era、GitHub、IFTTTなどのような他のRESTfulサービスへのAPI
 
 #. **保存** をクリックしてから **戻る** をクリックします。エラーや警告が表示されないことを確認します。
 
-   .. figure:: images/app_error.png
-
 Existing Machineサービスの使用
 +++++++++++++++++++++++++++++++
 
