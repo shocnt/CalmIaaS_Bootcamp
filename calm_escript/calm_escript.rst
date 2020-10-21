@@ -28,8 +28,6 @@ Nutanix Era、GitHub、IFTTTなどのような他のRESTfulサービスへのAPI
 
 #. **Prism Central** で、 :fa:`bars` **> サービス > Calm** を選択します。
 
-   .. figure:: images/1_access_calm.png
-
 #. 左側のツールバーの **Blueprints** を選択して、Calmのブループリントを表示および管理します。
 
    .. note::
